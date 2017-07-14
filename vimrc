@@ -1,7 +1,7 @@
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
-set shell=bash
+set shell=zsh
 
 
 execute pathogen#infect()
@@ -19,9 +19,10 @@ endif
 
 
 " ================ General Config ====================
-set shell=bash
+set shell=zsh
 set t_Co=256
 syntax on
+set mouse=a
 filetype plugin indent on
 color railscasts
 set number                      "Line numbers are good
@@ -29,7 +30,7 @@ hi MatchParen cterm=bold ctermfg=yellow ctermbg=none
 set backspace=indent,eol,start  "Allow backspace in insert mode
 set history=1000                "Store lots of :cmdline history
 set showcmd                     "Show incomplete cmds down the bottom
-set showmode                    "Show current mode down the bottom
+"set showmode                    "Show current mode down the bottom
 set gcr=a:blinkon0              "Disable cursor blink
 set visualbell                  "No sounds
 set autoread                    "Reload files changed outside vim
@@ -93,7 +94,7 @@ filetype indent on
 set list
 set listchars=tab:▸·,trail:·
 
-set nowrap       "Don't wrap lines
+set wrap       "Wrap lines
 set linebreak    "Wrap lines at convenient points
 
 " ================ Folds ============================
