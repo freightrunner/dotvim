@@ -30,7 +30,7 @@ hi MatchParen cterm=bold ctermfg=yellow ctermbg=none
 set backspace=indent,eol,start  "Allow backspace in insert mode
 set history=1000                "Store lots of :cmdline history
 set showcmd                     "Show incomplete cmds down the bottom
-"set showmode                    "Show current mode down the bottom
+set noshowmode                    "Show current mode down the bottom
 set gcr=a:blinkon0              "Disable cursor blink
 set visualbell                  "No sounds
 set autoread                    "Reload files changed outside vim
@@ -117,3 +117,6 @@ set wildignore+=*.gem
 set wildignore+=log/**
 set wildignore+=tmp/**
 set wildignore+=*.png,*.jpg,*.gif
+
+let g:airline_powerline_fonts = 1     "Automatically populate the airline symbols
+let g:airline#extensions#tabline#enabled = 1     "Smarter tab line
