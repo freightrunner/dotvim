@@ -120,3 +120,4 @@ set wildignore+=*.png,*.jpg,*.gif
 
 let g:airline_powerline_fonts = 1     "Automatically populate the airline symbols
 let g:airline#extensions#tabline#enabled = 1     "Smarter tab line
+set updatetime=250
