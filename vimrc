@@ -7,10 +7,6 @@ set shell=zsh
 execute pathogen#infect()
 
 let mapleader = ","
-map <Leader>n :NERDTreeToggle<CR>
-map <Leader>b :bp<CR>
-map <Leader>f :bn<CR>
-map <Leader>g :e#<CR>
 
 if exists('$TMUX')
   let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
@@ -57,6 +53,11 @@ set statusline+=\ col:\ %c
 " exist in the background without being in a window.
 " http://items.sjbach.com/319/configuring-vim-right
 set hidden
+" ================ Key Mapping ==================
+map <Leader>n :NERDTreeToggle<CR>
+map <Leader>b :bp<CR>
+map <Leader>f :bn<CR>
+map <Leader>g :e#<CR>
 
 " ================ Search Settings  =================
 
