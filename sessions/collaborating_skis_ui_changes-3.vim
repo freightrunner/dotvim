@@ -141,6 +141,7 @@ set autoindent
 set autoread
 set background=dark
 set backspace=indent,eol,start
+set errorformat=%\\S%\\+\ \ %#%[cefi]%[rxod]%[eir]%[a-z]%#%\\x1b[0m\ %\\+%\\S%\\+%$%\\&%\\x1b%\\S%\\+\ \ %#%m%\\>%\\x1b[0m\ \ %#%f,%\\s\ %#%[cefi]%[rxod]%[eir]%[a-z]%#\ %\\+%\\S%\\+%$%\\&%\\s\ %#%m%\\>\ \ %#%f,Overwrite%.%#%\\S%\\+\ \ %#%m%\\x1b[0m\ \ %#%f,%-GOverwrite%.%#\"h\"%.%#,%+GCurrent\ version:%.%#,%+G\ %#Status\ %#Migration\ ID%.%#,%+G\ %#Prefix\ %#Verb%.%#,%+G\ %#Code\ LOC:\ %.%#,%+GAbout\ your\ application's\ environment,%+Grun\ %\\S%#::Application.routes,%+Eruby:%.%#(LoadError),%+EUsage:%.%#,%+ECould\ not\ find\ generator%.%#,%+EType\ 'rails'\ for\ help.,%D(in\ %f),%\\s%#from\ %f:%l:%m,%\\s%#from\ %f:%l:,%\\s%##\ %f:%l:%m,%\\s%##\ %f:%l,%\\s%#[%f:%l:\ %#%m,%\\s%#%f:%l:\ %#%m,%\\s%#%f:%l:,%m\ [%f:%l]:,%+Erake\ aborted!,%+EDon't\ know\ how\ to\ build\ task\ %.%#,%+Einvalid\ option:%.%#,%+Irake\ %\\S%\\+%\\s%\\+#\ %.%#,chdir\ /Users/arpaio/Shipsticks
 set expandtab
 set fileencodings=ucs-bom,utf-8,default,latin1
 set guicursor=a:blinkon0
@@ -182,8 +183,11 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +99 app/views/v4/how_it_works.html.slim
+badd +28 app/views/v4/how_it_works.html.slim
 badd +1 app/views/v4/_footer.html.slim
+badd +81 app/views/v4/about.html.slim
+badd +1 app/views/v4/home.html.slim
+badd +51 app/views/v4/_head.html.slim
 argglobal
 silent! argdel *
 edit app/views/v4/how_it_works.html.slim
@@ -327,12 +331,12 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 57 - ((16 * winheight(0) + 33) / 66)
+let s:l = 31 - ((24 * winheight(0) + 33) / 66)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-57
-normal! 088|
+31
+normal! 026|
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf

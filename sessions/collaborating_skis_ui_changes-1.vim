@@ -182,10 +182,10 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +34 config/brands.yml
+badd +42 config/brands.yml
 badd +26 config/content/v4/layout.yml
 badd +1 config/content/v1/home.yml
-badd +1 config/content/v1/how_it_works.yml
+badd +27 config/content/v1/how_it_works.yml
 badd +1 config/content/v1/about.yml
 argglobal
 silent! argdel *
@@ -330,11 +330,11 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 34 - ((24 * winheight(0) + 24) / 49)
+let s:l = 70 - ((0 * winheight(0) + 24) / 49)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-34
+70
 normal! 0
 tabnext 1
 if exists('s:wipebuf')
