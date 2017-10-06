@@ -9,12 +9,12 @@ map! <D-v> *
 vmap  :w !pbcopy
 nnoremap <silent>  :CtrlP
 vmap  :!pbcopy
-nmap <silent> ,vR <Plug>EgMapReplaceCurrentWord_R
-nmap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
-nmap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
-nmap <silent> ,va <Plug>EgMapGrepCurrentWord_a
-nmap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
 nmap <silent> ,vv <Plug>EgMapGrepCurrentWord_v
+nmap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
+nmap <silent> ,va <Plug>EgMapGrepCurrentWord_a
+nmap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
+nmap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
+nmap <silent> ,vR <Plug>EgMapReplaceCurrentWord_R
 nmap ,hp <Plug>GitGutterPreviewHunk
 nmap ,hr <Plug>GitGutterUndoHunk:echomsg ',hr is deprecated. Use ,hu'
 nmap ,hu <Plug>GitGutterUndoHunk
@@ -183,17 +183,17 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +128 app/views/v4/_footer.html.slim
+badd +104 app/views/v4/_footer.html.slim
 badd +120 app/views/v4/home.html.slim
 badd +23 app/views/v4/_top_banner.html.slim
-badd +52 app/views/v4/_ski_works.html.slim
+badd +9 app/views/v4/_ski_works.html.slim
 badd +9 app/views/v4/tracking/show.html.slim
 badd +10 app/views/v4/_nav.html.slim
 badd +17 app/views/v4/contact_us/contact_us.html.slim
-badd +24 app/views/v4/about.html.slim
+badd +50 app/views/v4/about.html.slim
 argglobal
 silent! argdel *
-edit app/views/v4/_footer.html.slim
+edit app/views/v4/_ski_works.html.slim
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -334,12 +334,12 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 97 - ((13 * winheight(0) + 33) / 66)
+let s:l = 16 - ((15 * winheight(0) + 35) / 71)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-97
-normal! 034|
+16
+normal! 010|
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf
