@@ -9,27 +9,27 @@ map! <D-v> *
 vmap  :w !pbcopy
 nnoremap <silent>  :CtrlP
 vmap  :!pbcopy
+nmap <silent> ,vR <Plug>EgMapReplaceCurrentWord_R
+nmap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
+nmap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
+nmap <silent> ,va <Plug>EgMapGrepCurrentWord_a
+nmap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
+nmap <silent> ,vv <Plug>EgMapGrepCurrentWord_v
 nmap ,hp <Plug>GitGutterPreviewHunk
 nmap ,hr <Plug>GitGutterUndoHunk:echomsg ',hr is deprecated. Use ,hu'
 nmap ,hu <Plug>GitGutterUndoHunk
 nmap ,hs <Plug>GitGutterStageHunk
 vmap <silent> ,vR <Plug>EgMapReplaceSelection_R
-nmap <silent> ,vR <Plug>EgMapReplaceCurrentWord_R
 omap <silent> ,vR <Plug>EgMapReplaceCurrentWord_R
 vmap <silent> ,vr <Plug>EgMapReplaceSelection_r
-nmap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
 omap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
 vmap <silent> ,vA <Plug>EgMapGrepSelection_A
-nmap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
 omap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
 vmap <silent> ,va <Plug>EgMapGrepSelection_a
-nmap <silent> ,va <Plug>EgMapGrepCurrentWord_a
 omap <silent> ,va <Plug>EgMapGrepCurrentWord_a
 vmap <silent> ,vV <Plug>EgMapGrepSelection_V
-nmap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
 omap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
 vmap <silent> ,vv <Plug>EgMapGrepSelection_v
-nmap <silent> ,vv <Plug>EgMapGrepCurrentWord_v
 omap <silent> ,vv <Plug>EgMapGrepCurrentWord_v
 map <silent> ,vo <Plug>EgMapGrepOptions
 nmap ,ca <Plug>NERDCommenterAltDelims
@@ -141,6 +141,7 @@ set autoindent
 set autoread
 set background=dark
 set backspace=indent,eol,start
+set errorformat=%\\S%\\+\ \ %#%[cefi]%[rxod]%[eir]%[a-z]%#%\\x1b[0m\ %\\+%\\S%\\+%$%\\&%\\x1b%\\S%\\+\ \ %#%m%\\>%\\x1b[0m\ \ %#%f,%\\s\ %#%[cefi]%[rxod]%[eir]%[a-z]%#\ %\\+%\\S%\\+%$%\\&%\\s\ %#%m%\\>\ \ %#%f,Overwrite%.%#%\\S%\\+\ \ %#%m%\\x1b[0m\ \ %#%f,%-GOverwrite%.%#\"h\"%.%#,%+GCurrent\ version:%.%#,%+G\ %#Status\ %#Migration\ ID%.%#,%+G\ %#Prefix\ %#Verb%.%#,%+G\ %#Code\ LOC:\ %.%#,%+GAbout\ your\ application's\ environment,%+Grun\ %\\S%#::Application.routes,%+Eruby:%.%#(LoadError),%+EUsage:%.%#,%+ECould\ not\ find\ generator%.%#,%+EType\ 'rails'\ for\ help.,%D(in\ %f),%\\s%#from\ %f:%l:%m,%\\s%#from\ %f:%l:,%\\s%##\ %f:%l:%m,%\\s%##\ %f:%l,%\\s%#[%f:%l:\ %#%m,%\\s%#%f:%l:\ %#%m,%\\s%#%f:%l:,%m\ [%f:%l]:,%+Erake\ aborted!,%+EDon't\ know\ how\ to\ build\ task\ %.%#,%+Einvalid\ option:%.%#,%+Irake\ %\\S%\\+%\\s%\\+#\ %.%#,chdir\ /Users/arpaio/Shipsticks
 set expandtab
 set fileencodings=ucs-bom,utf-8,default,latin1
 set guicursor=a:blinkon0
@@ -184,11 +185,11 @@ endif
 set shortmess=aoO
 badd +1 app/assets/javascripts/campaigns/welcome_campaigns.js
 badd +1 app/controllers/application_controller.rb
-badd +1 app/assets/javascripts/edit_campaigns.js.erb
-badd +0 app/views/campaigns/index.html.erb
+badd +231 app/assets/javascripts/edit_campaigns.js.erb
+badd +1 app/views/campaigns/index.html.erb
 argglobal
 silent! argdel *
-edit app/views/campaigns/index.html.erb
+edit app/assets/javascripts/edit_campaigns.js.erb
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -285,7 +286,7 @@ set list
 setlocal list
 setlocal makeencoding=
 setlocal makeprg=bundle\ exec\ rake
-setlocal matchpairs=(:),{:},[:],<:>
+setlocal matchpairs=(:),{:},[:]
 setlocal modeline
 setlocal modifiable
 setlocal nrformats=bin,octal,hex
@@ -293,7 +294,7 @@ set number
 setlocal number
 setlocal numberwidth=4
 setlocal omnifunc=rubycomplete#Complete
-setlocal path=~/Shipsticks/lib,~/Shipsticks/vendor,~/Shipsticks/app/models/concerns,~/Shipsticks/app/controllers/concerns,~/Shipsticks/app/controllers,~/Shipsticks/app/helpers,~/Shipsticks/app/mailers,~/Shipsticks/app/models,~/Shipsticks/app/*,~/Shipsticks/app/views,~/Shipsticks/app/views/campaigns,~/Shipsticks/app/views/application,~/Shipsticks/public,~/Shipsticks/test,~/Shipsticks/test/unit,~/Shipsticks/test/functional,~/Shipsticks/test/integration,~/Shipsticks/test/controllers,~/Shipsticks/test/helpers,~/Shipsticks/test/mailers,~/Shipsticks/test/models,~/Shipsticks/spec,~/Shipsticks/spec/controllers,~/Shipsticks/spec/helpers,~/Shipsticks/spec/mailers,~/Shipsticks/spec/models,~/Shipsticks/spec/views,~/Shipsticks/spec/lib,~/Shipsticks/spec/features,~/Shipsticks/spec/requests,~/Shipsticks/spec/integration,~/Shipsticks/vendor/plugins/*/lib,~/Shipsticks/vendor/plugins/*/test,~/Shipsticks/vendor/rails/*/lib,~/Shipsticks/vendor/rails/*/test,~/Shipsticks,/usr/local/Cellar/rbenv/1.1.1/rbenv.d/exec/gem-rehash,/usr/local/opt/rben
+setlocal path=~/Shipsticks/lib,~/Shipsticks/vendor,~/Shipsticks/app/models/concerns,~/Shipsticks/app/controllers/concerns,~/Shipsticks/app/controllers,~/Shipsticks/app/helpers,~/Shipsticks/app/mailers,~/Shipsticks/app/models,~/Shipsticks/app/*,~/Shipsticks/app/views,~/Shipsticks/app/views/edit_campaigns,~/Shipsticks/app/views/application,~/Shipsticks/public,~/Shipsticks/test,~/Shipsticks/test/unit,~/Shipsticks/test/functional,~/Shipsticks/test/integration,~/Shipsticks/test/controllers,~/Shipsticks/test/helpers,~/Shipsticks/test/mailers,~/Shipsticks/test/models,~/Shipsticks/spec,~/Shipsticks/spec/controllers,~/Shipsticks/spec/helpers,~/Shipsticks/spec/mailers,~/Shipsticks/spec/models,~/Shipsticks/spec/views,~/Shipsticks/spec/lib,~/Shipsticks/spec/features,~/Shipsticks/spec/requests,~/Shipsticks/spec/integration,~/Shipsticks/vendor/plugins/*/lib,~/Shipsticks/vendor/plugins/*/test,~/Shipsticks/vendor/rails/*/lib,~/Shipsticks/vendor/rails/*/test,~/Shipsticks,/usr/local/Cellar/rbenv/1.1.1/rbenv.d/exec/gem-rehash,/usr/local/opt
 setlocal nopreserveindent
 setlocal nopreviewwindow
 setlocal quoteescape=\\
@@ -321,7 +322,7 @@ endif
 setlocal tabstop=2
 setlocal tagcase=
 setlocal tags=~/Shipsticks/tags,~/Shipsticks/tmp/tags,./tags,tags,/usr/local/Cellar/rbenv/1.1.1/rbenv.d/exec/gem-rehash/tags,/usr/local/Cellar/rbenv/1.1.1/rbenv.d/exec/gem-rehash/tags,/usr/local/opt/rbenv/versions/2.2.2/lib/ruby/site_ruby/2.2.0/tags,/usr/local/opt/rbenv/versions/2.2.2/lib/ruby/site_ruby/2.2.0/x86_64-darwin16/tags,/usr/local/opt/rbenv/versions/2.2.2/lib/ruby/site_ruby/tags,/usr/local/opt/rbenv/versions/2.2.2/lib/ruby/vendor_ruby/2.2.0/tags,/usr/local/opt/rbenv/versions/2.2.2/lib/ruby/vendor_ruby/2.2.0/x86_64-darwin16/tags,/usr/local/opt/rbenv/versions/2.2.2/lib/ruby/vendor_ruby/tags,/usr/local/opt/rbenv/versions/2.2.2/lib/ruby/2.2.0/tags,/usr/local/opt/rbenv/versions/2.2.2/lib/ruby/2.2.0/x86_64-darwin16/tags
-setlocal termkey=
+setlocal termkey=
 setlocal termsize=
 setlocal textwidth=0
 setlocal thesaurus=
@@ -331,11 +332,11 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 1 - ((0 * winheight(0) + 24) / 48)
+let s:l = 231 - ((16 * winheight(0) + 19) / 38)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
+231
 normal! 0
 tabnext 1
 if exists('s:wipebuf')
