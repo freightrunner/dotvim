@@ -9,12 +9,12 @@ map! <D-v> *
 vmap  :w !pbcopy
 nnoremap <silent>  :CtrlP
 vmap  :!pbcopy
-nmap <silent> ,vR <Plug>EgMapReplaceCurrentWord_R
-nmap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
-nmap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
-nmap <silent> ,va <Plug>EgMapGrepCurrentWord_a
-nmap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
 nmap <silent> ,vv <Plug>EgMapGrepCurrentWord_v
+nmap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
+nmap <silent> ,va <Plug>EgMapGrepCurrentWord_a
+nmap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
+nmap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
+nmap <silent> ,vR <Plug>EgMapReplaceCurrentWord_R
 nmap ,hp <Plug>GitGutterPreviewHunk
 nmap ,hr <Plug>GitGutterUndoHunk:echomsg ',hr is deprecated. Use ,hu'
 nmap ,hu <Plug>GitGutterUndoHunk
@@ -332,12 +332,12 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 231 - ((16 * winheight(0) + 19) / 38)
+let s:l = 231 - ((21 * winheight(0) + 24) / 49)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 231
-normal! 0
+normal! 02|
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf
