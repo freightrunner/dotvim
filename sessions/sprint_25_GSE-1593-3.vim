@@ -9,12 +9,12 @@ map! <D-v> *
 vmap  :w !pbcopy
 nnoremap <silent>  :CtrlP
 vmap  :!pbcopy
-nmap <silent> ,vR <Plug>EgMapReplaceCurrentWord_R
-nmap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
-nmap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
-nmap <silent> ,va <Plug>EgMapGrepCurrentWord_a
-nmap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
 nmap <silent> ,vv <Plug>EgMapGrepCurrentWord_v
+nmap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
+nmap <silent> ,va <Plug>EgMapGrepCurrentWord_a
+nmap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
+nmap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
+nmap <silent> ,vR <Plug>EgMapReplaceCurrentWord_R
 nmap ,hp <Plug>GitGutterPreviewHunk
 nmap ,hr <Plug>GitGutterUndoHunk:echomsg ',hr is deprecated. Use ,hu'
 nmap ,hu <Plug>GitGutterUndoHunk
@@ -183,10 +183,11 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +13 app/views/shared/campaigns/_welcome_modals.html.slim
+badd +11 app/views/shared/campaigns/_welcome_modals.html.slim
 badd +149 app/views/campaigns/_form.html.erb
 badd +8 app/views/campaigns/edit.html.erb
 badd +87 app/assets/stylesheets/campaigns.css.erb
+badd +178 app/views/v4/home.html.slim
 argglobal
 silent! argdel *
 edit app/views/shared/campaigns/_welcome_modals.html.slim
@@ -330,12 +331,12 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 32 - ((31 * winheight(0) + 35) / 71)
+let s:l = 33 - ((32 * winheight(0) + 35) / 71)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-32
-normal! 077|
+33
+normal! 0184|
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf

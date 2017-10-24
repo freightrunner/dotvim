@@ -9,12 +9,12 @@ map! <D-v> *
 vmap  :w !pbcopy
 nnoremap <silent>  :CtrlP
 vmap  :!pbcopy
-nmap <silent> ,vv <Plug>EgMapGrepCurrentWord_v
-nmap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
-nmap <silent> ,va <Plug>EgMapGrepCurrentWord_a
-nmap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
-nmap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
 nmap <silent> ,vR <Plug>EgMapReplaceCurrentWord_R
+nmap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
+nmap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
+nmap <silent> ,va <Plug>EgMapGrepCurrentWord_a
+nmap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
+nmap <silent> ,vv <Plug>EgMapGrepCurrentWord_v
 nmap ,hp <Plug>GitGutterPreviewHunk
 nmap ,hr <Plug>GitGutterUndoHunk:echomsg ',hr is deprecated. Use ,hu'
 nmap ,hu <Plug>GitGutterUndoHunk
@@ -188,7 +188,7 @@ badd +1 app/assets/javascripts/admin_campaigns.js.erb
 badd +170 app/views/v4/home.html.slim
 badd +1 app/assets/javascripts/v4/segment.js
 badd +21 app/controllers/leads_controller.rb
-badd +1 app/assets/javascripts/campaigns/campaigns.js
+badd +40 app/assets/javascripts/campaigns/campaigns.js
 argglobal
 silent! argdel *
 edit app/assets/javascripts/campaigns/campaigns.js
@@ -332,11 +332,11 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 37 - ((36 * winheight(0) + 24) / 48)
+let s:l = 40 - ((23 * winheight(0) + 24) / 48)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-37
+40
 normal! 0
 tabnext 1
 if exists('s:wipebuf')
