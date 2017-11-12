@@ -9,27 +9,27 @@ map! <D-v> *
 vmap  :w !pbcopy
 nnoremap <silent>  :CtrlP
 vmap  :!pbcopy
+nmap <silent> ,vv <Plug>EgMapGrepCurrentWord_v
+nmap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
+nmap <silent> ,va <Plug>EgMapGrepCurrentWord_a
+nmap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
+nmap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
+nmap <silent> ,vR <Plug>EgMapReplaceCurrentWord_R
 nmap ,hp <Plug>GitGutterPreviewHunk
 nmap ,hr <Plug>GitGutterUndoHunk:echomsg ',hr is deprecated. Use ,hu'
 nmap ,hu <Plug>GitGutterUndoHunk
 nmap ,hs <Plug>GitGutterStageHunk
 vmap <silent> ,vR <Plug>EgMapReplaceSelection_R
-nmap <silent> ,vR <Plug>EgMapReplaceCurrentWord_R
 omap <silent> ,vR <Plug>EgMapReplaceCurrentWord_R
 vmap <silent> ,vr <Plug>EgMapReplaceSelection_r
-nmap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
 omap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
 vmap <silent> ,vA <Plug>EgMapGrepSelection_A
-nmap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
 omap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
 vmap <silent> ,va <Plug>EgMapGrepSelection_a
-nmap <silent> ,va <Plug>EgMapGrepCurrentWord_a
 omap <silent> ,va <Plug>EgMapGrepCurrentWord_a
 vmap <silent> ,vV <Plug>EgMapGrepSelection_V
-nmap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
 omap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
 vmap <silent> ,vv <Plug>EgMapGrepSelection_v
-nmap <silent> ,vv <Plug>EgMapGrepCurrentWord_v
 omap <silent> ,vv <Plug>EgMapGrepCurrentWord_v
 map <silent> ,vo <Plug>EgMapGrepOptions
 nmap ,ca <Plug>NERDCommenterAltDelims
@@ -184,10 +184,11 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
 endif
 set shortmess=aoO
 badd +12 app/controllers/api/beta/contact_us/contact_controller.rb
-badd +0 app/models/user.rb
+badd +249 app/models/user.rb
+badd +0 app/mailers/notifier.rb
 argglobal
 silent! argdel *
-edit app/models/user.rb
+edit app/mailers/notifier.rb
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -292,7 +293,7 @@ set number
 setlocal number
 setlocal numberwidth=4
 setlocal omnifunc=rubycomplete#Complete
-setlocal path=~/Shipsticks/lib,~/Shipsticks/vendor,~/Shipsticks/app/models/concerns,~/Shipsticks/app/controllers/concerns,~/Shipsticks/app/controllers,~/Shipsticks/app/helpers,~/Shipsticks/app/mailers,~/Shipsticks/app/models,~/Shipsticks/app/*,~/Shipsticks/app/views,~/Shipsticks/test,~/Shipsticks/test/unit,~/Shipsticks/test/functional,~/Shipsticks/test/integration,~/Shipsticks/test/controllers,~/Shipsticks/test/helpers,~/Shipsticks/test/mailers,~/Shipsticks/test/models,~/Shipsticks/spec,~/Shipsticks/spec/controllers,~/Shipsticks/spec/helpers,~/Shipsticks/spec/mailers,~/Shipsticks/spec/models,~/Shipsticks/spec/views,~/Shipsticks/spec/lib,~/Shipsticks/spec/features,~/Shipsticks/spec/requests,~/Shipsticks/spec/integration,~/Shipsticks/vendor/plugins/*/lib,~/Shipsticks/vendor/plugins/*/test,~/Shipsticks/vendor/rails/*/lib,~/Shipsticks/vendor/rails/*/test,~/Shipsticks,/usr/local/Cellar/rbenv/1.1.1/rbenv.d/exec/gem-rehash,/usr/local/opt/rbenv/versions/2.2.2/lib/ruby/site_ruby/2.2.0,/usr/local/opt/rbenv/versions/2.2.2/lib/ruby/s
+setlocal path=~/Shipsticks/lib,~/Shipsticks/vendor,~/Shipsticks/app/models/concerns,~/Shipsticks/app/controllers/concerns,~/Shipsticks/app/controllers,~/Shipsticks/app/helpers,~/Shipsticks/app/mailers,~/Shipsticks/app/models,~/Shipsticks/app/*,~/Shipsticks/app/views,~/Shipsticks/app/views/notifier,~/Shipsticks/app/views/application,~/Shipsticks/public,~/Shipsticks/test,~/Shipsticks/test/unit,~/Shipsticks/test/functional,~/Shipsticks/test/integration,~/Shipsticks/test/controllers,~/Shipsticks/test/helpers,~/Shipsticks/test/mailers,~/Shipsticks/test/models,~/Shipsticks/spec,~/Shipsticks/spec/controllers,~/Shipsticks/spec/helpers,~/Shipsticks/spec/mailers,~/Shipsticks/spec/models,~/Shipsticks/spec/views,~/Shipsticks/spec/lib,~/Shipsticks/spec/features,~/Shipsticks/spec/requests,~/Shipsticks/spec/integration,~/Shipsticks/vendor/plugins/*/lib,~/Shipsticks/vendor/plugins/*/test,~/Shipsticks/vendor/rails/*/lib,~/Shipsticks/vendor/rails/*/test,~/Shipsticks,/usr/local/Cellar/rbenv/1.1.1/rbenv.d/exec/gem-rehash,/usr/local/opt/rbenv
 setlocal nopreserveindent
 setlocal nopreviewwindow
 setlocal quoteescape=\\
@@ -320,7 +321,7 @@ endif
 setlocal tabstop=2
 setlocal tagcase=
 setlocal tags=~/Shipsticks/tags,~/Shipsticks/tmp/tags,./tags,tags,/usr/local/Cellar/rbenv/1.1.1/rbenv.d/exec/gem-rehash/tags,/usr/local/Cellar/rbenv/1.1.1/rbenv.d/exec/gem-rehash/tags,/usr/local/opt/rbenv/versions/2.2.2/lib/ruby/site_ruby/2.2.0/tags,/usr/local/opt/rbenv/versions/2.2.2/lib/ruby/site_ruby/2.2.0/x86_64-darwin16/tags,/usr/local/opt/rbenv/versions/2.2.2/lib/ruby/site_ruby/tags,/usr/local/opt/rbenv/versions/2.2.2/lib/ruby/vendor_ruby/2.2.0/tags,/usr/local/opt/rbenv/versions/2.2.2/lib/ruby/vendor_ruby/2.2.0/x86_64-darwin16/tags,/usr/local/opt/rbenv/versions/2.2.2/lib/ruby/vendor_ruby/tags,/usr/local/opt/rbenv/versions/2.2.2/lib/ruby/2.2.0/tags,/usr/local/opt/rbenv/versions/2.2.2/lib/ruby/2.2.0/x86_64-darwin16/tags
-setlocal termkey=
+setlocal termkey=
 setlocal termsize=
 setlocal textwidth=0
 setlocal thesaurus=
@@ -330,12 +331,12 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 249 - ((58 * winheight(0) + 35) / 71)
+let s:l = 521 - ((36 * winheight(0) + 30) / 61)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-249
-normal! 078|
+521
+normal! 099|
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf

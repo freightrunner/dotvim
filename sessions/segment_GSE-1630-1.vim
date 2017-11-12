@@ -9,27 +9,27 @@ map! <D-v> *
 vmap  :w !pbcopy
 nnoremap <silent>  :CtrlP
 vmap  :!pbcopy
+nmap <silent> ,vv <Plug>EgMapGrepCurrentWord_v
+nmap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
+nmap <silent> ,va <Plug>EgMapGrepCurrentWord_a
+nmap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
+nmap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
+nmap <silent> ,vR <Plug>EgMapReplaceCurrentWord_R
 nmap ,hp <Plug>GitGutterPreviewHunk
 nmap ,hr <Plug>GitGutterUndoHunk:echomsg ',hr is deprecated. Use ,hu'
 nmap ,hu <Plug>GitGutterUndoHunk
 nmap ,hs <Plug>GitGutterStageHunk
 vmap <silent> ,vR <Plug>EgMapReplaceSelection_R
-nmap <silent> ,vR <Plug>EgMapReplaceCurrentWord_R
 omap <silent> ,vR <Plug>EgMapReplaceCurrentWord_R
 vmap <silent> ,vr <Plug>EgMapReplaceSelection_r
-nmap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
 omap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
 vmap <silent> ,vA <Plug>EgMapGrepSelection_A
-nmap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
 omap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
 vmap <silent> ,va <Plug>EgMapGrepSelection_a
-nmap <silent> ,va <Plug>EgMapGrepCurrentWord_a
 omap <silent> ,va <Plug>EgMapGrepCurrentWord_a
 vmap <silent> ,vV <Plug>EgMapGrepSelection_V
-nmap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
 omap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
 vmap <silent> ,vv <Plug>EgMapGrepSelection_v
-nmap <silent> ,vv <Plug>EgMapGrepCurrentWord_v
 omap <silent> ,vv <Plug>EgMapGrepCurrentWord_v
 map <silent> ,vo <Plug>EgMapGrepOptions
 nmap ,ca <Plug>NERDCommenterAltDelims
@@ -182,10 +182,12 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +0 config/initializers/01_initialize_feature_flags.rb
+badd +33 config/initializers/01_initialize_feature_flags.rb
+badd +55 app/views/notifier/_confirm_shipment.html.erb
+badd +0 app/views/notifier/_traveler.html.erb
 argglobal
 silent! argdel *
-edit config/initializers/01_initialize_feature_flags.rb
+edit app/views/notifier/_traveler.html.erb
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -227,7 +229,7 @@ setlocal cinoptions=
 setlocal cinwords=if,else,while,do,for,switch
 setlocal colorcolumn=
 setlocal comments=:#
-setlocal commentstring=#\ %s
+setlocal commentstring=<%#%s%>
 setlocal complete=.,w,b,u,t,i
 setlocal concealcursor=
 setlocal conceallevel=0
@@ -237,14 +239,14 @@ setlocal cryptmethod=
 setlocal nocursorbind
 setlocal nocursorcolumn
 setlocal nocursorline
-setlocal define=^\\s*def\\s\\+\\(self\\.\\)\\=
+setlocal define=
 setlocal dictionary=
 setlocal nodiff
 setlocal equalprg=
 setlocal errorformat=%\\S%\\+\ \ %#%[cefi]%[rxod]%[eir]%[a-z]%#%\\x1b[0m\ %\\+%\\S%\\+%$%\\&%\\x1b%\\S%\\+\ \ %#%m%\\>%\\x1b[0m\ \ %#%f,%\\s\ %#%[cefi]%[rxod]%[eir]%[a-z]%#\ %\\+%\\S%\\+%$%\\&%\\s\ %#%m%\\>\ \ %#%f,Overwrite%.%#%\\S%\\+\ \ %#%m%\\x1b[0m\ \ %#%f,%-GOverwrite%.%#\"h\"%.%#,%+GCurrent\ version:%.%#,%+G\ %#Status\ %#Migration\ ID%.%#,%+G\ %#Prefix\ %#Verb%.%#,%+G\ %#Code\ LOC:\ %.%#,%+GAbout\ your\ application's\ environment,%+Grun\ %\\S%#::Application.routes,%+Eruby:%.%#(LoadError),%+EUsage:%.%#,%+ECould\ not\ find\ generator%.%#,%+EType\ 'rails'\ for\ help.,%D(in\ %f),%\\s%#from\ %f:%l:%m,%\\s%#from\ %f:%l:,%\\s%##\ %f:%l:%m,%\\s%##\ %f:%l,%\\s%#[%f:%l:\ %#%m,%\\s%#%f:%l:\ %#%m,%\\s%#%f:%l:,%m\ [%f:%l]:,%+Erake\ aborted!,%+EDon't\ know\ how\ to\ build\ task\ %.%#,%+Einvalid\ option:%.%#,%+Irake\ %\\S%\\+%\\s%\\+#\ %.%#,chdir\ /Users/arpaio/Shipsticks
 setlocal expandtab
-if &filetype != 'ruby'
-setlocal filetype=ruby
+if &filetype != 'eruby'
+setlocal filetype=eruby
 endif
 setlocal fixendofline
 setlocal foldcolumn=0
@@ -269,8 +271,8 @@ setlocal iminsert=0
 setlocal imsearch=0
 setlocal include=^\\s*\\<\\(load\\>\\|require\\>\\|autoload\\s*:\\=[\"']\\=\\h\\w*[\"']\\=,\\)
 setlocal includeexpr=RailsIncludeexpr()
-setlocal indentexpr=GetRubyIndent(v:lnum)
-setlocal indentkeys=0{,0},0),0],!^F,o,O,e,:,.,=end,=else,=elsif,=when,=ensure,=rescue,==begin,==end,=private,=protected,=public
+setlocal indentexpr=GetErubyIndent()
+setlocal indentkeys=o,O,*<Return>,<>>,{,},0),0],o,O,!^F,=end,=else,=elsif,=rescue,=ensure,=when
 setlocal noinfercase
 setlocal iskeyword=@,48-57,_,192-255
 setlocal keywordprg=ri
@@ -282,7 +284,7 @@ set list
 setlocal list
 setlocal makeencoding=
 setlocal makeprg=bundle\ exec\ rake
-setlocal matchpairs=(:),{:},[:]
+setlocal matchpairs=(:),{:},[:],<:>
 setlocal modeline
 setlocal modifiable
 setlocal nrformats=bin,octal,hex
@@ -290,7 +292,7 @@ set number
 setlocal number
 setlocal numberwidth=4
 setlocal omnifunc=rubycomplete#Complete
-setlocal path=~/Shipsticks/lib,~/Shipsticks/vendor,~/Shipsticks/app/models/concerns,~/Shipsticks/app/controllers/concerns,~/Shipsticks/app/controllers,~/Shipsticks/app/helpers,~/Shipsticks/app/mailers,~/Shipsticks/app/models,~/Shipsticks/app/*,~/Shipsticks/app/views,~/Shipsticks/test,~/Shipsticks/test/unit,~/Shipsticks/test/functional,~/Shipsticks/test/integration,~/Shipsticks/test/controllers,~/Shipsticks/test/helpers,~/Shipsticks/test/mailers,~/Shipsticks/test/models,~/Shipsticks/spec,~/Shipsticks/spec/controllers,~/Shipsticks/spec/helpers,~/Shipsticks/spec/mailers,~/Shipsticks/spec/models,~/Shipsticks/spec/views,~/Shipsticks/spec/lib,~/Shipsticks/spec/features,~/Shipsticks/spec/requests,~/Shipsticks/spec/integration,~/Shipsticks/vendor/plugins/*/lib,~/Shipsticks/vendor/plugins/*/test,~/Shipsticks/vendor/rails/*/lib,~/Shipsticks/vendor/rails/*/test,~/Shipsticks,/usr/local/Cellar/rbenv/1.1.1/rbenv.d/exec/gem-rehash,/usr/local/opt/rbenv/versions/2.2.2/lib/ruby/site_ruby/2.2.0,/usr/local/opt/rbenv/versions/2.2.2/lib/ruby/s
+setlocal path=~/Shipsticks/lib,~/Shipsticks/vendor,~/Shipsticks/app/models/concerns,~/Shipsticks/app/controllers/concerns,~/Shipsticks/app/controllers,~/Shipsticks/app/helpers,~/Shipsticks/app/mailers,~/Shipsticks/app/models,~/Shipsticks/app/*,~/Shipsticks/app/views,~/Shipsticks/app/views/notifier,~/Shipsticks/app/views/application,~/Shipsticks/public,~/Shipsticks/test,~/Shipsticks/test/unit,~/Shipsticks/test/functional,~/Shipsticks/test/integration,~/Shipsticks/test/controllers,~/Shipsticks/test/helpers,~/Shipsticks/test/mailers,~/Shipsticks/test/models,~/Shipsticks/spec,~/Shipsticks/spec/controllers,~/Shipsticks/spec/helpers,~/Shipsticks/spec/mailers,~/Shipsticks/spec/models,~/Shipsticks/spec/views,~/Shipsticks/spec/lib,~/Shipsticks/spec/features,~/Shipsticks/spec/requests,~/Shipsticks/spec/integration,~/Shipsticks/vendor/plugins/*/lib,~/Shipsticks/vendor/plugins/*/test,~/Shipsticks/vendor/rails/*/lib,~/Shipsticks/vendor/rails/*/test,~/Shipsticks,/usr/local/Cellar/rbenv/1.1.1/rbenv.d/exec/gem-rehash,/usr/local/opt/rbenv
 setlocal nopreserveindent
 setlocal nopreviewwindow
 setlocal quoteescape=\\
@@ -312,13 +314,13 @@ setlocal statusline=%!airline#statusline(1)
 setlocal suffixesadd=.rb
 setlocal noswapfile
 setlocal synmaxcol=3000
-if &syntax != 'ruby'
-setlocal syntax=ruby
+if &syntax != 'eruby'
+setlocal syntax=eruby
 endif
 setlocal tabstop=2
 setlocal tagcase=
 setlocal tags=~/Shipsticks/tags,~/Shipsticks/tmp/tags,./tags,tags,/usr/local/Cellar/rbenv/1.1.1/rbenv.d/exec/gem-rehash/tags,/usr/local/Cellar/rbenv/1.1.1/rbenv.d/exec/gem-rehash/tags,/usr/local/opt/rbenv/versions/2.2.2/lib/ruby/site_ruby/2.2.0/tags,/usr/local/opt/rbenv/versions/2.2.2/lib/ruby/site_ruby/2.2.0/x86_64-darwin16/tags,/usr/local/opt/rbenv/versions/2.2.2/lib/ruby/site_ruby/tags,/usr/local/opt/rbenv/versions/2.2.2/lib/ruby/vendor_ruby/2.2.0/tags,/usr/local/opt/rbenv/versions/2.2.2/lib/ruby/vendor_ruby/2.2.0/x86_64-darwin16/tags,/usr/local/opt/rbenv/versions/2.2.2/lib/ruby/vendor_ruby/tags,/usr/local/opt/rbenv/versions/2.2.2/lib/ruby/2.2.0/tags,/usr/local/opt/rbenv/versions/2.2.2/lib/ruby/2.2.0/x86_64-darwin16/tags
-setlocal termkey=
+setlocal termkey=
 setlocal termsize=
 setlocal textwidth=0
 setlocal thesaurus=
@@ -328,12 +330,12 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 51 - ((46 * winheight(0) + 24) / 48)
+let s:l = 1 - ((0 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-51
-normal! 018|
+1
+normal! 0
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf
