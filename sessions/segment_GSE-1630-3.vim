@@ -184,7 +184,7 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
 endif
 set shortmess=aoO
 badd +250 app/mailers/notifier.rb
-badd +0 app/models/analytics.rb
+badd +154 app/models/analytics.rb
 argglobal
 silent! argdel *
 $argadd app/views/v4/faq.html.slim
@@ -331,11 +331,11 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 1 - ((0 * winheight(0) + 35) / 70)
+let s:l = 154 - ((34 * winheight(0) + 35) / 70)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
+154
 normal! 0
 tabnext 1
 if exists('s:wipebuf')
