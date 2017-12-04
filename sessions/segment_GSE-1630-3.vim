@@ -183,11 +183,12 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +12 app/controllers/api/beta/contact_us/contact_controller.rb
-badd +0 app/models/user.rb
+badd +250 app/mailers/notifier.rb
+badd +0 app/models/analytics.rb
 argglobal
 silent! argdel *
-edit app/models/user.rb
+$argadd app/views/v4/faq.html.slim
+edit app/models/analytics.rb
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -292,7 +293,7 @@ set number
 setlocal number
 setlocal numberwidth=4
 setlocal omnifunc=rubycomplete#Complete
-setlocal path=~/Shipsticks/lib,~/Shipsticks/vendor,~/Shipsticks/app/models/concerns,~/Shipsticks/app/controllers/concerns,~/Shipsticks/app/controllers,~/Shipsticks/app/helpers,~/Shipsticks/app/mailers,~/Shipsticks/app/models,~/Shipsticks/app/*,~/Shipsticks/app/views,~/Shipsticks/test,~/Shipsticks/test/unit,~/Shipsticks/test/functional,~/Shipsticks/test/integration,~/Shipsticks/test/controllers,~/Shipsticks/test/helpers,~/Shipsticks/test/mailers,~/Shipsticks/test/models,~/Shipsticks/spec,~/Shipsticks/spec/controllers,~/Shipsticks/spec/helpers,~/Shipsticks/spec/mailers,~/Shipsticks/spec/models,~/Shipsticks/spec/views,~/Shipsticks/spec/lib,~/Shipsticks/spec/features,~/Shipsticks/spec/requests,~/Shipsticks/spec/integration,~/Shipsticks/vendor/plugins/*/lib,~/Shipsticks/vendor/plugins/*/test,~/Shipsticks/vendor/rails/*/lib,~/Shipsticks/vendor/rails/*/test,~/Shipsticks,/usr/local/Cellar/rbenv/1.1.1/rbenv.d/exec/gem-rehash,/usr/local/opt/rbenv/versions/2.2.2/lib/ruby/site_ruby/2.2.0,/usr/local/opt/rbenv/versions/2.2.2/lib/ruby/s
+setlocal path=~/Shipsticks/lib,~/Shipsticks/vendor,~/Shipsticks/app/models/concerns,~/Shipsticks/app/controllers/concerns,~/Shipsticks/app/controllers,~/Shipsticks/app/helpers,~/Shipsticks/app/mailers,~/Shipsticks/app/models,~/Shipsticks/app/*,~/Shipsticks/app/views,~/Shipsticks/test,~/Shipsticks/test/unit,~/Shipsticks/test/functional,~/Shipsticks/test/integration,~/Shipsticks/test/controllers,~/Shipsticks/test/helpers,~/Shipsticks/test/mailers,~/Shipsticks/test/models,~/Shipsticks/spec,~/Shipsticks/spec/controllers,~/Shipsticks/spec/helpers,~/Shipsticks/spec/mailers,~/Shipsticks/spec/models,~/Shipsticks/spec/views,~/Shipsticks/spec/lib,~/Shipsticks/spec/features,~/Shipsticks/spec/requests,~/Shipsticks/spec/integration,~/Shipsticks/vendor/plugins/*/lib,~/Shipsticks/vendor/plugins/*/test,~/Shipsticks/vendor/rails/*/lib,~/Shipsticks/vendor/rails/*/test,~/Shipsticks,/usr/local/Cellar/rbenv/1.1.1/rbenv.d/exec/gem-rehash,~/.rbenv/versions/2.2.2/lib/ruby/site_ruby/2.2.0,~/.rbenv/versions/2.2.2/lib/ruby/site_ruby/2.2.0/x86_64-da
 setlocal nopreserveindent
 setlocal nopreviewwindow
 setlocal quoteescape=\\
@@ -319,7 +320,7 @@ setlocal syntax=ruby
 endif
 setlocal tabstop=2
 setlocal tagcase=
-setlocal tags=~/Shipsticks/tags,~/Shipsticks/tmp/tags,./tags,tags,/usr/local/Cellar/rbenv/1.1.1/rbenv.d/exec/gem-rehash/tags,/usr/local/Cellar/rbenv/1.1.1/rbenv.d/exec/gem-rehash/tags,/usr/local/opt/rbenv/versions/2.2.2/lib/ruby/site_ruby/2.2.0/tags,/usr/local/opt/rbenv/versions/2.2.2/lib/ruby/site_ruby/2.2.0/x86_64-darwin16/tags,/usr/local/opt/rbenv/versions/2.2.2/lib/ruby/site_ruby/tags,/usr/local/opt/rbenv/versions/2.2.2/lib/ruby/vendor_ruby/2.2.0/tags,/usr/local/opt/rbenv/versions/2.2.2/lib/ruby/vendor_ruby/2.2.0/x86_64-darwin16/tags,/usr/local/opt/rbenv/versions/2.2.2/lib/ruby/vendor_ruby/tags,/usr/local/opt/rbenv/versions/2.2.2/lib/ruby/2.2.0/tags,/usr/local/opt/rbenv/versions/2.2.2/lib/ruby/2.2.0/x86_64-darwin16/tags
+setlocal tags=~/Shipsticks/tags,~/Shipsticks/tmp/tags,./tags,tags,/usr/local/Cellar/rbenv/1.1.1/rbenv.d/exec/gem-rehash/tags,~/.rbenv/versions/2.2.2/lib/ruby/site_ruby/2.2.0/tags,~/.rbenv/versions/2.2.2/lib/ruby/site_ruby/2.2.0/x86_64-darwin16/tags,~/.rbenv/versions/2.2.2/lib/ruby/site_ruby/tags,~/.rbenv/versions/2.2.2/lib/ruby/vendor_ruby/2.2.0/tags,~/.rbenv/versions/2.2.2/lib/ruby/vendor_ruby/2.2.0/x86_64-darwin16/tags,~/.rbenv/versions/2.2.2/lib/ruby/vendor_ruby/tags,~/.rbenv/versions/2.2.2/lib/ruby/2.2.0/tags,~/.rbenv/versions/2.2.2/lib/ruby/2.2.0/x86_64-darwin16/tags
 setlocal termkey=
 setlocal termsize=
 setlocal textwidth=0
@@ -330,12 +331,12 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 249 - ((58 * winheight(0) + 35) / 71)
+let s:l = 1 - ((0 * winheight(0) + 35) / 70)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-249
-normal! 078|
+1
+normal! 0
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf
