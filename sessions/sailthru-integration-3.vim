@@ -174,7 +174,7 @@ set statusline=%F%m%r%h%w\ \ [line\ %l/%L]\ col:\ %c
 set noswapfile
 set tabline=%!airline#extensions#tabline#get()
 set tabstop=2
-set updatetime=250
+set updatetime=1
 set viminfo='100,f1
 set visualbell
 set wildignore=*.o,*.obj,*~,*vim/backups*,*sass-cache*,*DS_Store*,vendor/rails/**,vendor/cache/**,*.gem,log/**,tmp/**,*.png,*.jpg,*.gif
@@ -190,10 +190,10 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +1 app/views/v2/shared/_analytics.html.erb
+badd +43 app/views/v2/shared/_analytics.html.erb
 badd +17 app/services/sailthru/communicator.rb
 badd +1 app/services/sailthru/utils.rb
-badd +18 app/services/sailthru/user_endpoint.rb
+badd +31 app/services/sailthru/user_endpoint.rb
 badd +13 app/mailers/mailr/users.rb
 badd +6 app/services/sailthru/exception.rb
 badd +2 app/services/sailthru/sailthru.rb
@@ -336,12 +336,12 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 15 - ((14 * winheight(0) + 30) / 61)
+let s:l = 31 - ((28 * winheight(0) + 28) / 57)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-15
-normal! 021|
+31
+normal! 0
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf

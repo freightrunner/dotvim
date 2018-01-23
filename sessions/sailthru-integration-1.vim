@@ -181,15 +181,14 @@ endif
 set shortmess=aoO
 badd +60 config/initializers/01_initialize_feature_flags.rb
 badd +13 config/environments/development.rb
-badd +102 app/services/sales_invoice/sales_invoice.rb
 badd +65 app/services/segment/user_event_updater.rb
 badd +35 app/services/segment/order_event_updater.rb
-badd +206 app/models/user.rb
-badd +0 config/initializers/analytics_ruby.rb
+badd +11 config/initializers/analytics_ruby.rb
+badd +0 app/services/sailthru/order_endpoint.rb
 argglobal
 silent! argdel *
 $argadd config/initializers/01_initialize_feature_flags.rb
-edit config/initializers/analytics_ruby.rb
+edit app/services/sailthru/order_endpoint.rb
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -324,12 +323,12 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 11 - ((10 * winheight(0) + 24) / 49)
+let s:l = 32 - ((13 * winheight(0) + 24) / 49)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-11
-normal! 02|
+32
+normal! 09|
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf
