@@ -8,27 +8,27 @@ inoremap <silent> <Plug>NERDCommenterInsert  <BS>:call NERDComment('i', "inse
 vmap  :w !pbcopy
 nnoremap <silent>  :CtrlP
 vmap  :!pbcopy
+nmap <silent> ,vv <Plug>EgMapGrepCurrentWord_v
+nmap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
+nmap <silent> ,va <Plug>EgMapGrepCurrentWord_a
+nmap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
+nmap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
+nmap <silent> ,vR <Plug>EgMapReplaceCurrentWord_R
 nmap ,hp <Plug>GitGutterPreviewHunk
 nmap ,hr <Plug>GitGutterUndoHunk:echomsg ',hr is deprecated. Use ,hu'
 nmap ,hu <Plug>GitGutterUndoHunk
 nmap ,hs <Plug>GitGutterStageHunk
 vmap <silent> ,vR <Plug>EgMapReplaceSelection_R
-nmap <silent> ,vR <Plug>EgMapReplaceCurrentWord_R
 omap <silent> ,vR <Plug>EgMapReplaceCurrentWord_R
 vmap <silent> ,vr <Plug>EgMapReplaceSelection_r
-nmap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
 omap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
 vmap <silent> ,vA <Plug>EgMapGrepSelection_A
-nmap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
 omap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
 vmap <silent> ,va <Plug>EgMapGrepSelection_a
-nmap <silent> ,va <Plug>EgMapGrepCurrentWord_a
 omap <silent> ,va <Plug>EgMapGrepCurrentWord_a
 vmap <silent> ,vV <Plug>EgMapGrepSelection_V
-nmap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
 omap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
 vmap <silent> ,vv <Plug>EgMapGrepSelection_v
-nmap <silent> ,vv <Plug>EgMapGrepCurrentWord_v
 omap <silent> ,vv <Plug>EgMapGrepCurrentWord_v
 map <silent> ,vo <Plug>EgMapGrepOptions
 nmap ,ca <Plug>NERDCommenterAltDelims
@@ -179,15 +179,15 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +3 config/initializers/sailthru.rb
+badd +2 config/initializers/sailthru.rb
 badd +245 app/models/user.rb
 badd +114 app/controllers/refactor/ship_controller.rb
 badd +245 app/controllers/v2/payments_controller.rb
-badd +290 app/models/analytics.rb
+badd +15 app/models/analytics.rb
 argglobal
 silent! argdel *
 $argadd config/initializers/sailthru.rb
-edit app/models/analytics.rb
+edit app/models/user.rb
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -322,11 +322,11 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 290 - ((24 * winheight(0) + 24) / 49)
+let s:l = 245 - ((24 * winheight(0) + 24) / 49)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-290
+245
 normal! 0
 tabnext 1
 if exists('s:wipebuf')
