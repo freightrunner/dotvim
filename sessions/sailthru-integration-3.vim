@@ -196,14 +196,12 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +43 app/views/v2/shared/_analytics.html.erb
-badd +17 app/services/sailthru/communicator.rb
+badd +8 app/services/sailthru/communicator.rb
 badd +16 app/services/sailthru/utils.rb
-badd +20 app/services/sailthru/user_endpoint.rb
+badd +15 app/services/sailthru/user_endpoint.rb
 badd +13 app/mailers/mailr/users.rb
 badd +6 app/services/sailthru/exception.rb
-badd +2 app/services/sailthru/sailthru.rb
-badd +35 config/application.rb
+badd +211 app/views/v4/_footer.html.slim
 argglobal
 silent! argdel *
 $argadd app/views/v2/shared/_analytics.html.erb
@@ -350,11 +348,11 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 20 - ((19 * winheight(0) + 32) / 64)
+let s:l = 28 - ((24 * winheight(0) + 32) / 64)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-20
+28
 normal! 0
 tabnext 1
 if exists('s:wipebuf')

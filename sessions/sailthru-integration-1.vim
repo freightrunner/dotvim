@@ -185,16 +185,19 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +60 config/initializers/01_initialize_feature_flags.rb
+badd +42 config/initializers/01_initialize_feature_flags.rb
 badd +13 config/environments/development.rb
 badd +65 app/services/segment/user_event_updater.rb
 badd +35 app/services/segment/order_event_updater.rb
 badd +11 config/initializers/analytics_ruby.rb
-badd +32 app/services/sailthru/order_endpoint.rb
+badd +28 app/services/sailthru/order_endpoint.rb
+badd +98 app/assets/javascripts/campaigns/welcome_campaigns.js
+badd +105 app/assets/javascripts/campaigns/campaigns.js
+badd +81 app/views/v2/shared/_analytics.html.erb
 argglobal
 silent! argdel *
 $argadd config/initializers/01_initialize_feature_flags.rb
-edit app/services/sailthru/order_endpoint.rb
+edit config/initializers/01_initialize_feature_flags.rb
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -337,11 +340,11 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 114 - ((17 * winheight(0) + 24) / 49)
+let s:l = 42 - ((29 * winheight(0) + 24) / 49)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-114
+42
 normal! 0
 tabnext 1
 if exists('s:wipebuf')
