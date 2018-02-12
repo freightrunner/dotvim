@@ -8,27 +8,27 @@ inoremap <silent> <Plug>NERDCommenterInsert  <BS>:call NERDComment('i', "inse
 vmap  :w !pbcopy
 nnoremap <silent>  :CtrlP
 vmap  :!pbcopy
+nmap <silent> ,vv <Plug>EgMapGrepCurrentWord_v
+nmap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
+nmap <silent> ,va <Plug>EgMapGrepCurrentWord_a
+nmap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
+nmap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
+nmap <silent> ,vR <Plug>EgMapReplaceCurrentWord_R
 nmap ,hp <Plug>GitGutterPreviewHunk
 nmap ,hr <Plug>GitGutterUndoHunk:echomsg ',hr is deprecated. Use ,hu'
 nmap ,hu <Plug>GitGutterUndoHunk
 nmap ,hs <Plug>GitGutterStageHunk
 vmap <silent> ,vR <Plug>EgMapReplaceSelection_R
-nmap <silent> ,vR <Plug>EgMapReplaceCurrentWord_R
 omap <silent> ,vR <Plug>EgMapReplaceCurrentWord_R
 vmap <silent> ,vr <Plug>EgMapReplaceSelection_r
-nmap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
 omap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
 vmap <silent> ,vA <Plug>EgMapGrepSelection_A
-nmap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
 omap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
 vmap <silent> ,va <Plug>EgMapGrepSelection_a
-nmap <silent> ,va <Plug>EgMapGrepCurrentWord_a
 omap <silent> ,va <Plug>EgMapGrepCurrentWord_a
 vmap <silent> ,vV <Plug>EgMapGrepSelection_V
-nmap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
 omap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
 vmap <silent> ,vv <Plug>EgMapGrepSelection_v
-nmap <silent> ,vv <Plug>EgMapGrepCurrentWord_v
 omap <silent> ,vv <Plug>EgMapGrepCurrentWord_v
 map <silent> ,vo <Plug>EgMapGrepOptions
 nmap ,ca <Plug>NERDCommenterAltDelims
@@ -163,7 +163,7 @@ set statusline=%F%m%r%h%w\ \ [line\ %l/%L]\ col:\ %c
 set noswapfile
 set tabline=%!airline#extensions#tabline#get()
 set tabstop=2
-set updatetime=1
+set updatetime=250
 set viminfo='100,f1
 set visualbell
 set wildignore=*.o,*.obj,*~,*vim/backups*,*sass-cache*,*DS_Store*,vendor/rails/**,vendor/cache/**,*.gem,log/**,tmp/**,*.png,*.jpg,*.gif
@@ -179,17 +179,15 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +12 app/helpers/brand_helper.rb
-badd +34 app/views/v4/home.html.slim
-badd +15 app/models/brand_image.rb
-badd +8 app/views/admin/brands/_form.html.slim
-badd +14 app/views/admin/brands/new.html.slim
-badd +13 app/controllers/admin/brands_controller.rb
+badd +28 app/models/brand_image.rb
+badd +82 app/views/admin/brands/_form.html.slim
+badd +25 app/controllers/admin/brands_controller.rb
 badd +364 app/views/admin/partners/_form.html.slim
+badd +0 app/controllers/application_controller.rb
 argglobal
 silent! argdel *
 $argadd app/controllers/application_controller.rb
-edit app/controllers/admin/brands_controller.rb
+edit app/models/brand_image.rb
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -290,7 +288,7 @@ set number
 setlocal number
 setlocal numberwidth=4
 setlocal omnifunc=rubycomplete#Complete
-setlocal path=~/Shipsticks/lib,~/Shipsticks/vendor,~/Shipsticks/app/models/concerns,~/Shipsticks/app/controllers/concerns,~/Shipsticks/app/controllers,~/Shipsticks/app/helpers,~/Shipsticks/app/mailers,~/Shipsticks/app/models,~/Shipsticks/app/*,~/Shipsticks/app/views,~/Shipsticks/app/views/admin/brands,~/Shipsticks/app/views/application,~/Shipsticks/public,~/Shipsticks/test,~/Shipsticks/test/unit,~/Shipsticks/test/functional,~/Shipsticks/test/integration,~/Shipsticks/test/controllers,~/Shipsticks/test/helpers,~/Shipsticks/test/mailers,~/Shipsticks/test/models,~/Shipsticks/spec,~/Shipsticks/spec/controllers,~/Shipsticks/spec/helpers,~/Shipsticks/spec/mailers,~/Shipsticks/spec/models,~/Shipsticks/spec/views,~/Shipsticks/spec/lib,~/Shipsticks/spec/features,~/Shipsticks/spec/requests,~/Shipsticks/spec/integration,~/Shipsticks/vendor/plugins/*/lib,~/Shipsticks/vendor/plugins/*/test,~/Shipsticks/vendor/rails/*/lib,~/Shipsticks/vendor/rails/*/test,~/Shipsticks,/usr/local/Cellar/rbenv/1.1.1/rbenv.d/exec/gem-rehash,~/.rbenv/version
+setlocal path=~/Shipsticks/lib,~/Shipsticks/vendor,~/Shipsticks/app/models/concerns,~/Shipsticks/app/controllers/concerns,~/Shipsticks/app/controllers,~/Shipsticks/app/helpers,~/Shipsticks/app/mailers,~/Shipsticks/app/models,~/Shipsticks/app/*,~/Shipsticks/app/views,~/Shipsticks/test,~/Shipsticks/test/unit,~/Shipsticks/test/functional,~/Shipsticks/test/integration,~/Shipsticks/test/controllers,~/Shipsticks/test/helpers,~/Shipsticks/test/mailers,~/Shipsticks/test/models,~/Shipsticks/spec,~/Shipsticks/spec/controllers,~/Shipsticks/spec/helpers,~/Shipsticks/spec/mailers,~/Shipsticks/spec/models,~/Shipsticks/spec/views,~/Shipsticks/spec/lib,~/Shipsticks/spec/features,~/Shipsticks/spec/requests,~/Shipsticks/spec/integration,~/Shipsticks/vendor/plugins/*/lib,~/Shipsticks/vendor/plugins/*/test,~/Shipsticks/vendor/rails/*/lib,~/Shipsticks/vendor/rails/*/test,~/Shipsticks,/usr/local/Cellar/rbenv/1.1.1/rbenv.d/exec/gem-rehash,~/.rbenv/versions/2.2.2/lib/ruby/site_ruby/2.2.0,~/.rbenv/versions/2.2.2/lib/ruby/site_ruby/2.2.0/x86_64-da
 setlocal nopreserveindent
 setlocal nopreviewwindow
 setlocal quoteescape=\\
@@ -324,12 +322,12 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 43 - ((42 * winheight(0) + 24) / 49)
+let s:l = 34 - ((33 * winheight(0) + 24) / 49)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-43
-normal! 0
+34
+normal! 05|
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf
