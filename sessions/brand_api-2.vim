@@ -8,12 +8,12 @@ inoremap <silent> <Plug>NERDCommenterInsert  <BS>:call NERDComment('i', "inse
 vmap  :w !pbcopy
 nnoremap <silent>  :CtrlP
 vmap  :!pbcopy
-nmap <silent> ,vv <Plug>EgMapGrepCurrentWord_v
-nmap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
-nmap <silent> ,va <Plug>EgMapGrepCurrentWord_a
-nmap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
-nmap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
 nmap <silent> ,vR <Plug>EgMapReplaceCurrentWord_R
+nmap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
+nmap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
+nmap <silent> ,va <Plug>EgMapGrepCurrentWord_a
+nmap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
+nmap <silent> ,vv <Plug>EgMapGrepCurrentWord_v
 nmap ,hp <Plug>GitGutterPreviewHunk
 nmap ,hr <Plug>GitGutterUndoHunk:echomsg ',hr is deprecated. Use ,hu'
 nmap ,hu <Plug>GitGutterUndoHunk
@@ -179,15 +179,16 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +28 app/models/brand_image.rb
-badd +82 app/views/admin/brands/_form.html.slim
-badd +25 app/controllers/admin/brands_controller.rb
-badd +364 app/views/admin/partners/_form.html.slim
-badd +0 app/controllers/application_controller.rb
+badd +15 app/models/brand_image.rb
+badd +13 app/controllers/admin/brands_controller.rb
+badd +14 app/controllers/application_controller.rb
+badd +24 app/models/term.rb
+badd +42 spec/factories/brands.rb
+badd +0 spec/models/brand_spec.rb
 argglobal
 silent! argdel *
 $argadd app/controllers/application_controller.rb
-edit app/models/brand_image.rb
+edit spec/models/brand_spec.rb
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -322,12 +323,12 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 34 - ((33 * winheight(0) + 24) / 49)
+let s:l = 35 - ((34 * winheight(0) + 24) / 49)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-34
-normal! 05|
+35
+normal! 038|
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf

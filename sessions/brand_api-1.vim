@@ -8,12 +8,12 @@ inoremap <silent> <Plug>NERDCommenterInsert  <BS>:call NERDComment('i', "inse
 vmap  :w !pbcopy
 nnoremap <silent>  :CtrlP
 vmap  :!pbcopy
-nmap <silent> ,vv <Plug>EgMapGrepCurrentWord_v
-nmap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
-nmap <silent> ,va <Plug>EgMapGrepCurrentWord_a
-nmap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
-nmap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
 nmap <silent> ,vR <Plug>EgMapReplaceCurrentWord_R
+nmap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
+nmap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
+nmap <silent> ,va <Plug>EgMapGrepCurrentWord_a
+nmap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
+nmap <silent> ,vv <Plug>EgMapGrepCurrentWord_v
 nmap ,hp <Plug>GitGutterPreviewHunk
 nmap ,hr <Plug>GitGutterUndoHunk:echomsg ',hr is deprecated. Use ,hu'
 nmap ,hu <Plug>GitGutterUndoHunk
@@ -181,15 +181,15 @@ endif
 set shortmess=aoO
 badd +31 config/brands.yml
 badd +49 app/models/brand.rb
-badd +13 app/models/brand_content.rb
-badd +73 app/controllers/admin/partners_controller.rb
-badd +32 app/uploaders/brand_image_uploader.rb
-badd +28 lib/tasks/create_brand_with_images.rake
-badd +18 db/seeds.rb
+badd +7 app/models/brand_content.rb
+badd +221 lib/tasks/create_brand_with_images.rake
+badd +25 app/controllers/admin/brands_controller.rb
+badd +6 app/serializers/brand_serializer.rb
+badd +4 app/serializers/brand_content_serializer.rb
 argglobal
 silent! argdel *
 $argadd config/brands.yml
-edit lib/tasks/create_brand_with_images.rake
+edit app/serializers/brand_serializer.rb
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -237,7 +237,7 @@ setlocal cryptmethod=
 setlocal nocursorbind
 setlocal nocursorcolumn
 setlocal nocursorline
-setlocal define=^\\s*def\\s\\+\\(self\\.\\)\\=\\|^\\s*\\%(task\\|file\\)\\s\\+[:'\"]
+setlocal define=^\\s*def\\s\\+\\(self\\.\\)\\=
 setlocal dictionary=
 setlocal nodiff
 setlocal equalprg=
@@ -324,12 +324,12 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 83 - ((37 * winheight(0) + 24) / 49)
+let s:l = 12 - ((11 * winheight(0) + 24) / 49)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-83
-normal! 051|
+12
+normal! 03|
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf
