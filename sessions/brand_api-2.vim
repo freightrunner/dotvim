@@ -179,16 +179,15 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +15 app/models/brand_image.rb
-badd +13 app/controllers/admin/brands_controller.rb
-badd +14 app/controllers/application_controller.rb
-badd +24 app/models/term.rb
+badd +7 app/models/brand_image.rb
 badd +42 spec/factories/brands.rb
-badd +0 spec/models/brand_spec.rb
+badd +71 app/views/brands/_admin_links.html.slim
+badd +1 app/models/brand_content.rb
+badd +0 app/controllers/application_controller.rb
 argglobal
 silent! argdel *
 $argadd app/controllers/application_controller.rb
-edit spec/models/brand_spec.rb
+edit app/models/brand_content.rb
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -323,12 +322,12 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 35 - ((34 * winheight(0) + 24) / 49)
+let s:l = 27 - ((26 * winheight(0) + 24) / 49)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-35
-normal! 038|
+27
+normal! 0
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf
