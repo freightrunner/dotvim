@@ -8,27 +8,27 @@ inoremap <silent> <Plug>NERDCommenterInsert  <BS>:call NERDComment('i', "inse
 vmap  :w !pbcopy
 nnoremap <silent>  :CtrlP
 vmap  :!pbcopy
-nmap <silent> ,vR <Plug>EgMapReplaceCurrentWord_R
-nmap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
-nmap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
-nmap <silent> ,va <Plug>EgMapGrepCurrentWord_a
-nmap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
-nmap <silent> ,vv <Plug>EgMapGrepCurrentWord_v
 nmap ,hp <Plug>GitGutterPreviewHunk
 nmap ,hr <Plug>GitGutterUndoHunk:echomsg ',hr is deprecated. Use ,hu'
 nmap ,hu <Plug>GitGutterUndoHunk
 nmap ,hs <Plug>GitGutterStageHunk
 vmap <silent> ,vR <Plug>EgMapReplaceSelection_R
+nmap <silent> ,vR <Plug>EgMapReplaceCurrentWord_R
 omap <silent> ,vR <Plug>EgMapReplaceCurrentWord_R
 vmap <silent> ,vr <Plug>EgMapReplaceSelection_r
+nmap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
 omap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
 vmap <silent> ,vA <Plug>EgMapGrepSelection_A
+nmap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
 omap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
 vmap <silent> ,va <Plug>EgMapGrepSelection_a
+nmap <silent> ,va <Plug>EgMapGrepCurrentWord_a
 omap <silent> ,va <Plug>EgMapGrepCurrentWord_a
 vmap <silent> ,vV <Plug>EgMapGrepSelection_V
+nmap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
 omap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
 vmap <silent> ,vv <Plug>EgMapGrepSelection_v
+nmap <silent> ,vv <Plug>EgMapGrepCurrentWord_v
 omap <silent> ,vv <Plug>EgMapGrepCurrentWord_v
 map <silent> ,vo <Plug>EgMapGrepOptions
 nmap ,ca <Plug>NERDCommenterAltDelims
@@ -179,17 +179,23 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +80 app/models/brand.rb
-badd +23 app/helpers/brand_helper.rb
-badd +18 app/views/admin/brands/index.html.slim
-badd +98 app/views/v4/home.html.slim
-badd +9 app/views/v4/_customers_review.html.slim
-badd +13 app/views/v4/how_it_works.html.slim
-badd +0 app/views/v4/about.html.slim
+badd +18 app/helpers/meta_helper.rb
+badd +26 app/views/v4/_head.html.slim
+badd +20 app/controllers/pages_controller.rb
+badd +22 app/helpers/brand_helper.rb
+badd +14 app/views/v4/_top_banner.html.slim
+badd +37 app/views/brands/_header.html.slim
+badd +27 app/views/brands/_footer.html.slim
+badd +25 app/controllers/api/v3/auto_complete_controller.rb
+badd +15 app/views/v4/claims.html.slim
+badd +35 app/models/segment_user_profile.rb
+badd +99 app/models/brand.rb
+badd +19 app/models/refund.rb
+badd +0 app/views/v4/_head_css.html.slim
 argglobal
 silent! argdel *
-$argadd app/models/brand.rb
-edit app/views/v4/about.html.slim
+$argadd app/helpers/meta_helper.rb
+edit app/views/v4/_head_css.html.slim
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -322,12 +328,12 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 21 - ((20 * winheight(0) + 28) / 57)
+let s:l = 22 - ((21 * winheight(0) + 29) / 59)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-21
-normal! 0
+22
+normal! 058|
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf
