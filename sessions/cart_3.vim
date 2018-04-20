@@ -144,6 +144,7 @@ set hidden
 set history=1000
 set hlsearch
 set ignorecase
+set imsearch=0
 set incsearch
 set laststatus=2
 set listchars=tab:▸·,trail:·
@@ -163,7 +164,7 @@ set statusline=%F%m%r%h%w\ \ [line\ %l/%L]\ col:\ %c
 set noswapfile
 set tabline=%!airline#extensions#tabline#get()
 set tabstop=2
-set updatetime=1
+set updatetime=250
 set viminfo='100,f1
 set visualbell
 set wildignore=*.o,*.obj,*~,*vim/backups*,*sass-cache*,*DS_Store*,vendor/rails/**,vendor/cache/**,*.gem,log/**,tmp/**,*.png,*.jpg,*.gif
@@ -179,20 +180,24 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +18 spec/factories/carts.rb
-badd +16 app/services/tracking/fetcher.rb
-badd +18 app/services/tracking/parser.rb
-badd +22 spec/factories/users.rb
-badd +8 spec/factories/cart_items.rb
+badd +25 spec/factories/carts.rb
+badd +15 spec/factories/cart_items.rb
 badd +7 spec/factories/travelers.rb
-badd +17 spec/factories/adjustments.rb
-badd +6 app/models/adjustment.rb
-badd +2 app/models/order_adjustment.rb
-badd +3 app/models/ship_adjustment.rb
+badd +16 app/models/adjustment.rb
+badd +80 config/routes.rb
+badd +9 app/serializers/cart_serializer.rb
+badd +9 app/serializers/cart_item_serializer.rb
+badd +22 app/services/sailthru/communicator.rb
+badd +9 app/models/cart_item.rb
+badd +34 app/helpers/brand_helper.rb
+badd +46 app/models/brand.rb
+badd +12 app/models/cart.rb
+badd +13 app/models/traveler.rb
+badd +1 app/models/order_adjustment.rb
 argglobal
 silent! argdel *
 $argadd spec/factories/carts.rb
-edit spec/factories/adjustments.rb
+edit config/routes.rb
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -327,12 +332,12 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 19 - ((18 * winheight(0) + 29) / 59)
+let s:l = 66 - ((15 * winheight(0) + 29) / 59)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-19
-normal! 03|
+66
+normal! 025|
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf

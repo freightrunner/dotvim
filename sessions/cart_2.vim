@@ -144,6 +144,7 @@ set hidden
 set history=1000
 set hlsearch
 set ignorecase
+set imsearch=0
 set incsearch
 set laststatus=2
 set listchars=tab:▸·,trail:·
@@ -181,13 +182,17 @@ endif
 set shortmess=aoO
 badd +16 spec/services/carts/create_spec.rb
 badd +27 spec/models/cart_item_spec.rb
-badd +22 spec/services/carts/item_create_spec.rb
-badd +25 spec/services/carts/item_update_spec.rb
+badd +11 spec/services/carts/item_create_spec.rb
+badd +43 spec/services/carts/item_update_spec.rb
 badd +7 spec/models/adjustment_spec.rb
+badd +1 spec/models/cart_spec.rb
+badd +10 spec/serializers/cart_item_serializer_spec.rb
+badd +55 spec/controllers/api/v5/carts_controller_spec.rb
+badd +133 spec/controllers/api/v5/cart_items_controller_spec.rb
 argglobal
 silent! argdel *
 $argadd spec/models/cart_spec.rb
-edit spec/services/carts/item_update_spec.rb
+edit spec/controllers/api/v5/cart_items_controller_spec.rb
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -288,7 +293,7 @@ set number
 setlocal number
 setlocal numberwidth=4
 setlocal omnifunc=rubycomplete#Complete
-setlocal path=~/Shipsticks/lib,~/Shipsticks/vendor,~/Shipsticks/app/models/concerns,~/Shipsticks/app/controllers/concerns,~/Shipsticks/app/controllers,~/Shipsticks/app/helpers,~/Shipsticks/app/mailers,~/Shipsticks/app/models,~/Shipsticks/app/*,~/Shipsticks/app/views,~/Shipsticks/test,~/Shipsticks/test/unit,~/Shipsticks/test/functional,~/Shipsticks/test/integration,~/Shipsticks/test/controllers,~/Shipsticks/test/helpers,~/Shipsticks/test/mailers,~/Shipsticks/test/models,~/Shipsticks/spec,~/Shipsticks/spec/controllers,~/Shipsticks/spec/helpers,~/Shipsticks/spec/mailers,~/Shipsticks/spec/models,~/Shipsticks/spec/views,~/Shipsticks/spec/lib,~/Shipsticks/spec/features,~/Shipsticks/spec/requests,~/Shipsticks/spec/integration,~/Shipsticks/vendor/plugins/*/lib,~/Shipsticks/vendor/plugins/*/test,~/Shipsticks/vendor/rails/*/lib,~/Shipsticks/vendor/rails/*/test,~/Shipsticks,/usr/local/Cellar/rbenv/1.1.1/rbenv.d/exec/gem-rehash,~/.rbenv/versions/2.2.2/lib/ruby/site_ruby/2.2.0,~/.rbenv/versions/2.2.2/lib/ruby/site_ruby/2.2.0/x86_64-da
+setlocal path=~/Shipsticks/lib,~/Shipsticks/vendor,~/Shipsticks/app/models/concerns,~/Shipsticks/app/controllers/concerns,~/Shipsticks/app/controllers,~/Shipsticks/app/helpers,~/Shipsticks/app/mailers,~/Shipsticks/app/models,~/Shipsticks/app/*,~/Shipsticks/app/views,~/Shipsticks/app/views/api/v5/cart_items,~/Shipsticks/app/views/application,~/Shipsticks/public,~/Shipsticks/test,~/Shipsticks/test/unit,~/Shipsticks/test/functional,~/Shipsticks/test/integration,~/Shipsticks/test/controllers,~/Shipsticks/test/helpers,~/Shipsticks/test/mailers,~/Shipsticks/test/models,~/Shipsticks/spec,~/Shipsticks/spec/controllers,~/Shipsticks/spec/helpers,~/Shipsticks/spec/mailers,~/Shipsticks/spec/models,~/Shipsticks/spec/views,~/Shipsticks/spec/lib,~/Shipsticks/spec/features,~/Shipsticks/spec/requests,~/Shipsticks/spec/integration,~/Shipsticks/vendor/plugins/*/lib,~/Shipsticks/vendor/plugins/*/test,~/Shipsticks/vendor/rails/*/lib,~/Shipsticks/vendor/rails/*/test,~/Shipsticks,/usr/local/Cellar/rbenv/1.1.1/rbenv.d/exec/gem-rehash,~/.rbenv/ve
 setlocal nopreserveindent
 setlocal nopreviewwindow
 setlocal quoteescape=\\
@@ -322,11 +327,11 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 25 - ((24 * winheight(0) + 24) / 49)
+let s:l = 112 - ((0 * winheight(0) + 24) / 49)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-25
+112
 normal! 0
 tabnext 1
 if exists('s:wipebuf')
