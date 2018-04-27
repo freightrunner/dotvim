@@ -8,12 +8,12 @@ inoremap <silent> <Plug>NERDCommenterInsert  <BS>:call NERDComment('i', "inse
 vmap  :w !pbcopy
 nnoremap <silent>  :CtrlP
 vmap  :!pbcopy
-nmap <silent> ,vR <Plug>EgMapReplaceCurrentWord_R
-nmap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
-nmap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
-nmap <silent> ,va <Plug>EgMapGrepCurrentWord_a
-nmap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
 nmap <silent> ,vv <Plug>EgMapGrepCurrentWord_v
+nmap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
+nmap <silent> ,va <Plug>EgMapGrepCurrentWord_a
+nmap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
+nmap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
+nmap <silent> ,vR <Plug>EgMapReplaceCurrentWord_R
 nmap ,hp <Plug>GitGutterPreviewHunk
 nmap ,hr <Plug>GitGutterUndoHunk:echomsg ',hr is deprecated. Use ,hu'
 nmap ,hu <Plug>GitGutterUndoHunk
@@ -181,23 +181,23 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
 endif
 set shortmess=aoO
 badd +25 spec/factories/carts.rb
-badd +15 spec/factories/cart_items.rb
-badd +7 spec/factories/travelers.rb
-badd +16 app/models/adjustment.rb
-badd +80 config/routes.rb
+badd +12 spec/factories/cart_items.rb
+badd +17 app/models/adjustment.rb
 badd +9 app/serializers/cart_serializer.rb
 badd +9 app/serializers/cart_item_serializer.rb
 badd +22 app/services/sailthru/communicator.rb
-badd +9 app/models/cart_item.rb
-badd +34 app/helpers/brand_helper.rb
-badd +46 app/models/brand.rb
+badd +22 app/models/cart_item.rb
 badd +12 app/models/cart.rb
-badd +13 app/models/traveler.rb
-badd +1 app/models/order_adjustment.rb
+badd +56 app/models/leg.rb
+badd +1 app/models/ship_point.rb
+badd +11 app/models/insurance_rate.rb
+badd +14 spec/factories/insurance_rates.rb
+badd +47 app/models/brand.rb
+badd +1 app/models/traveler.rb
 argglobal
 silent! argdel *
 $argadd spec/factories/carts.rb
-edit config/routes.rb
+edit app/models/cart_item.rb
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -332,12 +332,12 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 66 - ((15 * winheight(0) + 29) / 59)
+let s:l = 22 - ((21 * winheight(0) + 29) / 59)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-66
-normal! 025|
+22
+normal! 0
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf
