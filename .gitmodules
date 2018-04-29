@@ -91,3 +91,6 @@
 [submodule "bundle/vim-easygrep"]
 	path = bundle/vim-easygrep
 	url = http://github.com/dkprice/vim-easygrep.git
+[submodule "bundle/vim-game-code-break"]
+	path = bundle/vim-game-code-break
+	url = https://github.com/johngrib/vim-game-code-break

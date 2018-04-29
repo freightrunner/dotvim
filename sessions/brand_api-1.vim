@@ -8,27 +8,27 @@ inoremap <silent> <Plug>NERDCommenterInsert  <BS>:call NERDComment('i', "inse
 vmap  :w !pbcopy
 nnoremap <silent>  :CtrlP
 vmap  :!pbcopy
-nmap <silent> ,vv <Plug>EgMapGrepCurrentWord_v
-nmap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
-nmap <silent> ,va <Plug>EgMapGrepCurrentWord_a
-nmap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
-nmap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
-nmap <silent> ,vR <Plug>EgMapReplaceCurrentWord_R
 nmap ,hp <Plug>GitGutterPreviewHunk
 nmap ,hr <Plug>GitGutterUndoHunk:echomsg ',hr is deprecated. Use ,hu'
 nmap ,hu <Plug>GitGutterUndoHunk
 nmap ,hs <Plug>GitGutterStageHunk
 vmap <silent> ,vR <Plug>EgMapReplaceSelection_R
+nmap <silent> ,vR <Plug>EgMapReplaceCurrentWord_R
 omap <silent> ,vR <Plug>EgMapReplaceCurrentWord_R
 vmap <silent> ,vr <Plug>EgMapReplaceSelection_r
+nmap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
 omap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
 vmap <silent> ,vA <Plug>EgMapGrepSelection_A
+nmap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
 omap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
 vmap <silent> ,va <Plug>EgMapGrepSelection_a
+nmap <silent> ,va <Plug>EgMapGrepCurrentWord_a
 omap <silent> ,va <Plug>EgMapGrepCurrentWord_a
 vmap <silent> ,vV <Plug>EgMapGrepSelection_V
+nmap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
 omap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
 vmap <silent> ,vv <Plug>EgMapGrepSelection_v
+nmap <silent> ,vv <Plug>EgMapGrepCurrentWord_v
 omap <silent> ,vv <Plug>EgMapGrepCurrentWord_v
 map <silent> ,vo <Plug>EgMapGrepOptions
 nmap ,ca <Plug>NERDCommenterAltDelims
@@ -179,17 +179,18 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +2 config/initializers/sailthru.rb
-badd +39 app/controllers/v2/payments_controller.rb
-badd +15 app/models/analytics.rb
-badd +9 app/assets/javascripts/v4/sailthru.js
-badd +24 app/assets/javascripts/v4/segment.js
-badd +7 app/controllers/devise/registration_controller.rb
-badd +120 app/models/order.rb
+badd +58 app/models/brand.rb
+badd +194 lib/tasks/create_brand_with_images.rake
+badd +21 app/models/brand_content.rb
+badd +53 app/helpers/club_helper.rb
+badd +19 app/controllers/api/beta/labels/emails_controller.rb
+badd +24 app/mailers/mailr/shipping_label.rb
+badd +20 app/workers/delayed_notifier.rb
+badd +953 app/mailers/notifier.rb
 argglobal
 silent! argdel *
-$argadd config/initializers/sailthru.rb
-edit app/models/analytics.rb
+$argadd app/models/brand.rb
+edit lib/tasks/create_brand_with_images.rake
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -237,7 +238,7 @@ setlocal cryptmethod=
 setlocal nocursorbind
 setlocal nocursorcolumn
 setlocal nocursorline
-setlocal define=^\\s*def\\s\\+\\(self\\.\\)\\=
+setlocal define=^\\s*def\\s\\+\\(self\\.\\)\\=\\|^\\s*\\%(task\\|file\\)\\s\\+[:'\"]
 setlocal dictionary=
 setlocal nodiff
 setlocal equalprg=
@@ -324,12 +325,12 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 1 - ((0 * winheight(0) + 24) / 49)
+let s:l = 183 - ((13 * winheight(0) + 24) / 49)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
-normal! 0
+183
+normal! 019|
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf

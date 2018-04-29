@@ -5,30 +5,31 @@ set cpo&vim
 imap <S-Tab> <Plug>SuperTabBackward
 inoremap <C-Tab> 	
 inoremap <silent> <Plug>NERDCommenterInsert  <BS>:call NERDComment('i', "insert")
+map! <D-v> *
 vmap  :w !pbcopy
 nnoremap <silent>  :CtrlP
 vmap  :!pbcopy
+nmap <silent> ,vv <Plug>EgMapGrepCurrentWord_v
+nmap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
+nmap <silent> ,va <Plug>EgMapGrepCurrentWord_a
+nmap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
+nmap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
+nmap <silent> ,vR <Plug>EgMapReplaceCurrentWord_R
 nmap ,hp <Plug>GitGutterPreviewHunk
 nmap ,hr <Plug>GitGutterUndoHunk:echomsg ',hr is deprecated. Use ,hu'
 nmap ,hu <Plug>GitGutterUndoHunk
 nmap ,hs <Plug>GitGutterStageHunk
 vmap <silent> ,vR <Plug>EgMapReplaceSelection_R
-nmap <silent> ,vR <Plug>EgMapReplaceCurrentWord_R
 omap <silent> ,vR <Plug>EgMapReplaceCurrentWord_R
 vmap <silent> ,vr <Plug>EgMapReplaceSelection_r
-nmap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
 omap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
 vmap <silent> ,vA <Plug>EgMapGrepSelection_A
-nmap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
 omap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
 vmap <silent> ,va <Plug>EgMapGrepSelection_a
-nmap <silent> ,va <Plug>EgMapGrepCurrentWord_a
 omap <silent> ,va <Plug>EgMapGrepCurrentWord_a
 vmap <silent> ,vV <Plug>EgMapGrepSelection_V
-nmap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
 omap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
 vmap <silent> ,vv <Plug>EgMapGrepSelection_v
-nmap <silent> ,vv <Plug>EgMapGrepCurrentWord_v
 omap <silent> ,vv <Plug>EgMapGrepCurrentWord_v
 map <silent> ,vo <Plug>EgMapGrepOptions
 nmap ,ca <Plug>NERDCommenterAltDelims
@@ -80,17 +81,17 @@ nmap ySs <Plug>YSsurround
 nmap yss <Plug>Yssurround
 nmap yS <Plug>YSurround
 nmap ys <Plug>Ysurround
-noremap <silent> <Plug>AirlineSelectNextTab :exe repeat(':tabn|', v:count1)
-noremap <silent> <Plug>AirlineSelectPrevTab gT
-noremap <silent> <Plug>AirlineSelectTab9 :9tabn
-noremap <silent> <Plug>AirlineSelectTab8 :8tabn
-noremap <silent> <Plug>AirlineSelectTab7 :7tabn
-noremap <silent> <Plug>AirlineSelectTab6 :6tabn
-noremap <silent> <Plug>AirlineSelectTab5 :5tabn
-noremap <silent> <Plug>AirlineSelectTab4 :4tabn
-noremap <silent> <Plug>AirlineSelectTab3 :3tabn
-noremap <silent> <Plug>AirlineSelectTab2 :2tabn
 noremap <silent> <Plug>AirlineSelectTab1 :1tabn
+noremap <silent> <Plug>AirlineSelectTab2 :2tabn
+noremap <silent> <Plug>AirlineSelectTab3 :3tabn
+noremap <silent> <Plug>AirlineSelectTab4 :4tabn
+noremap <silent> <Plug>AirlineSelectTab5 :5tabn
+noremap <silent> <Plug>AirlineSelectTab6 :6tabn
+noremap <silent> <Plug>AirlineSelectTab7 :7tabn
+noremap <silent> <Plug>AirlineSelectTab8 :8tabn
+noremap <silent> <Plug>AirlineSelectTab9 :9tabn
+noremap <silent> <Plug>AirlineSelectPrevTab gT
+noremap <silent> <Plug>AirlineSelectNextTab :exe repeat(':tabn|', v:count1)
 vnoremap <silent> <Plug>NetrwBrowseXVis :call netrw#BrowseXVis()
 nnoremap <silent> <Plug>NetrwBrowseX :call netrw#BrowseX(expand((exists("g:netrw_gx")? g:netrw_gx : '<cfile>')),netrw#CheckIfRemote())
 nnoremap <silent> <Plug>SurroundRepeat .
@@ -125,6 +126,11 @@ xnoremap <silent> <Plug>NERDCommenterToggle :call NERDComment("x", "Toggle")
 nnoremap <silent> <Plug>NERDCommenterToggle :call NERDComment("n", "Toggle")
 xnoremap <silent> <Plug>NERDCommenterComment :call NERDComment("x", "Comment")
 nnoremap <silent> <Plug>NERDCommenterComment :call NERDComment("n", "Comment")
+vmap <BS> "-d
+vmap <D-x> "*d
+vmap <D-c> "*y
+vmap <D-v> "-d"*P
+nmap <D-v> "*P
 imap S <Plug>ISurround
 imap s <Plug>Isurround
 imap 	 <Plug>SuperTabForward
@@ -180,7 +186,7 @@ set visualbell
 set wildignore=*.o,*.obj,*~,*vim/backups*,*sass-cache*,*DS_Store*,vendor/rails/**,vendor/cache/**,*.gem,log/**,tmp/**,*.png,*.jpg,*.gif
 set wildmenu
 set wildmode=list:longest
-set window=0
+set window=1
 set nowritebackup
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
@@ -190,14 +196,12 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +1 app/views/v2/shared/_analytics.html.erb
-badd +17 app/services/sailthru/communicator.rb
-badd +1 app/services/sailthru/utils.rb
-badd +18 app/services/sailthru/user_endpoint.rb
+badd +8 app/services/sailthru/communicator.rb
+badd +16 app/services/sailthru/utils.rb
+badd +15 app/services/sailthru/user_endpoint.rb
 badd +13 app/mailers/mailr/users.rb
 badd +6 app/services/sailthru/exception.rb
-badd +2 app/services/sailthru/sailthru.rb
-badd +35 config/application.rb
+badd +211 app/views/v4/_footer.html.slim
 argglobal
 silent! argdel *
 $argadd app/views/v2/shared/_analytics.html.erb
@@ -227,6 +231,8 @@ cmap <buffer>  <Plug><cfile>
 cmap <buffer>  <Plug><cword>
 let &cpo=s:cpo_save
 unlet s:cpo_save
+setlocal keymap=
+setlocal noarabic
 setlocal autoindent
 setlocal backupcopy=
 setlocal nobinary
@@ -243,6 +249,8 @@ setlocal colorcolumn=
 setlocal comments=:#
 setlocal commentstring=#\ %s
 setlocal complete=.,w,b,u,t,i
+setlocal concealcursor=
+setlocal conceallevel=0
 setlocal completefunc=
 setlocal nocopyindent
 setlocal cryptmethod=
@@ -308,6 +316,8 @@ setlocal nopreviewwindow
 setlocal quoteescape=\\
 setlocal noreadonly
 setlocal norelativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
 setlocal noscrollbind
 setlocal shiftwidth=2
 setlocal noshortname
@@ -328,6 +338,8 @@ endif
 setlocal tabstop=2
 setlocal tagcase=
 setlocal tags=~/Shipsticks/tags,~/Shipsticks/tmp/tags,./tags,tags,/usr/local/Cellar/rbenv/1.1.1/rbenv.d/exec/gem-rehash/tags,~/.rbenv/versions/2.2.2/lib/ruby/site_ruby/2.2.0/tags,~/.rbenv/versions/2.2.2/lib/ruby/site_ruby/2.2.0/x86_64-darwin16/tags,~/.rbenv/versions/2.2.2/lib/ruby/site_ruby/tags,~/.rbenv/versions/2.2.2/lib/ruby/vendor_ruby/2.2.0/tags,~/.rbenv/versions/2.2.2/lib/ruby/vendor_ruby/2.2.0/x86_64-darwin16/tags,~/.rbenv/versions/2.2.2/lib/ruby/vendor_ruby/tags,~/.rbenv/versions/2.2.2/lib/ruby/2.2.0/tags,~/.rbenv/versions/2.2.2/lib/ruby/2.2.0/x86_64-darwin16/tags
+setlocal termkey=
+setlocal termsize=
 setlocal textwidth=0
 setlocal thesaurus=
 setlocal noundofile
@@ -336,12 +348,12 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 15 - ((14 * winheight(0) + 30) / 61)
+let s:l = 28 - ((24 * winheight(0) + 32) / 64)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-15
-normal! 021|
+28
+normal! 0
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf

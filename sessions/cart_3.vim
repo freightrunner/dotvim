@@ -144,6 +144,7 @@ set hidden
 set history=1000
 set hlsearch
 set ignorecase
+set imsearch=0
 set incsearch
 set laststatus=2
 set listchars=tab:▸·,trail:·
@@ -179,17 +180,24 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +2 config/initializers/sailthru.rb
-badd +39 app/controllers/v2/payments_controller.rb
-badd +15 app/models/analytics.rb
-badd +9 app/assets/javascripts/v4/sailthru.js
-badd +24 app/assets/javascripts/v4/segment.js
-badd +7 app/controllers/devise/registration_controller.rb
-badd +120 app/models/order.rb
+badd +25 spec/factories/carts.rb
+badd +12 spec/factories/cart_items.rb
+badd +17 app/models/adjustment.rb
+badd +9 app/serializers/cart_serializer.rb
+badd +9 app/serializers/cart_item_serializer.rb
+badd +22 app/services/sailthru/communicator.rb
+badd +22 app/models/cart_item.rb
+badd +12 app/models/cart.rb
+badd +56 app/models/leg.rb
+badd +1 app/models/ship_point.rb
+badd +11 app/models/insurance_rate.rb
+badd +14 spec/factories/insurance_rates.rb
+badd +47 app/models/brand.rb
+badd +1 app/models/traveler.rb
 argglobal
 silent! argdel *
-$argadd config/initializers/sailthru.rb
-edit app/models/analytics.rb
+$argadd spec/factories/carts.rb
+edit app/models/cart_item.rb
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -324,11 +332,11 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 1 - ((0 * winheight(0) + 24) / 49)
+let s:l = 22 - ((21 * winheight(0) + 29) / 59)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
+22
 normal! 0
 tabnext 1
 if exists('s:wipebuf')
