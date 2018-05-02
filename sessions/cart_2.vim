@@ -8,12 +8,12 @@ inoremap <silent> <Plug>NERDCommenterInsert  <BS>:call NERDComment('i', "inse
 vmap  :w !pbcopy
 nnoremap <silent>  :CtrlP
 vmap  :!pbcopy
-nmap <silent> ,vR <Plug>EgMapReplaceCurrentWord_R
-nmap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
-nmap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
-nmap <silent> ,va <Plug>EgMapGrepCurrentWord_a
-nmap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
 nmap <silent> ,vv <Plug>EgMapGrepCurrentWord_v
+nmap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
+nmap <silent> ,va <Plug>EgMapGrepCurrentWord_a
+nmap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
+nmap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
+nmap <silent> ,vR <Plug>EgMapReplaceCurrentWord_R
 nmap ,hp <Plug>GitGutterPreviewHunk
 nmap ,hr <Plug>GitGutterUndoHunk:echomsg ',hr is deprecated. Use ,hu'
 nmap ,hu <Plug>GitGutterUndoHunk
@@ -182,13 +182,17 @@ endif
 set shortmess=aoO
 badd +7 spec/models/adjustment_spec.rb
 badd +1 spec/models/cart_spec.rb
-badd +36 spec/controllers/api/v5/carts_controller_spec.rb
-badd +20 spec/controllers/api/v5/cart_items_controller_spec.rb
-badd +19 spec/controllers/api/v5/travelers_controller_spec.rb
+badd +15 spec/controllers/api/v5/carts_controller_spec.rb
+badd +29 spec/controllers/api/v5/cart_items_controller_spec.rb
+badd +28 spec/controllers/api/v5/travelers_controller_spec.rb
+badd +29 spec/services/travelers/create_spec.rb
+badd +127 spec/controllers/api/v5/users_controller_spec.rb
+badd +12 spec/models/cart_item_spec.rb
+badd +0 spec/serializers/cart_serializer_spec.rb
 argglobal
 silent! argdel *
 $argadd spec/models/cart_spec.rb
-edit spec/controllers/api/v5/travelers_controller_spec.rb
+edit spec/serializers/cart_serializer_spec.rb
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -289,7 +293,7 @@ set number
 setlocal number
 setlocal numberwidth=4
 setlocal omnifunc=rubycomplete#Complete
-setlocal path=~/Shipsticks/lib,~/Shipsticks/vendor,~/Shipsticks/app/models/concerns,~/Shipsticks/app/controllers/concerns,~/Shipsticks/app/controllers,~/Shipsticks/app/helpers,~/Shipsticks/app/mailers,~/Shipsticks/app/models,~/Shipsticks/app/*,~/Shipsticks/app/views,~/Shipsticks/app/views/api/v5/travelers,~/Shipsticks/app/views/application,~/Shipsticks/public,~/Shipsticks/test,~/Shipsticks/test/unit,~/Shipsticks/test/functional,~/Shipsticks/test/integration,~/Shipsticks/test/controllers,~/Shipsticks/test/helpers,~/Shipsticks/test/mailers,~/Shipsticks/test/models,~/Shipsticks/spec,~/Shipsticks/spec/controllers,~/Shipsticks/spec/helpers,~/Shipsticks/spec/mailers,~/Shipsticks/spec/models,~/Shipsticks/spec/views,~/Shipsticks/spec/lib,~/Shipsticks/spec/features,~/Shipsticks/spec/requests,~/Shipsticks/spec/integration,~/Shipsticks/vendor/plugins/*/lib,~/Shipsticks/vendor/plugins/*/test,~/Shipsticks/vendor/rails/*/lib,~/Shipsticks/vendor/rails/*/test,~/Shipsticks,/usr/local/Cellar/rbenv/1.1.1/rbenv.d/exec/gem-rehash,~/.rbenv/ver
+setlocal path=~/Shipsticks/lib,~/Shipsticks/vendor,~/Shipsticks/app/models/concerns,~/Shipsticks/app/controllers/concerns,~/Shipsticks/app/controllers,~/Shipsticks/app/helpers,~/Shipsticks/app/mailers,~/Shipsticks/app/models,~/Shipsticks/app/*,~/Shipsticks/app/views,~/Shipsticks/test,~/Shipsticks/test/unit,~/Shipsticks/test/functional,~/Shipsticks/test/integration,~/Shipsticks/test/controllers,~/Shipsticks/test/helpers,~/Shipsticks/test/mailers,~/Shipsticks/test/models,~/Shipsticks/spec,~/Shipsticks/spec/controllers,~/Shipsticks/spec/helpers,~/Shipsticks/spec/mailers,~/Shipsticks/spec/models,~/Shipsticks/spec/views,~/Shipsticks/spec/lib,~/Shipsticks/spec/features,~/Shipsticks/spec/requests,~/Shipsticks/spec/integration,~/Shipsticks/vendor/plugins/*/lib,~/Shipsticks/vendor/plugins/*/test,~/Shipsticks/vendor/rails/*/lib,~/Shipsticks/vendor/rails/*/test,~/Shipsticks,/usr/local/Cellar/rbenv/1.1.1/rbenv.d/exec/gem-rehash,~/.rbenv/versions/2.2.2/lib/ruby/site_ruby/2.2.0,~/.rbenv/versions/2.2.2/lib/ruby/site_ruby/2.2.0/x86_64-da
 setlocal nopreserveindent
 setlocal nopreviewwindow
 setlocal quoteescape=\\
@@ -323,12 +327,12 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 19 - ((18 * winheight(0) + 24) / 49)
+let s:l = 15 - ((14 * winheight(0) + 24) / 49)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-19
-normal! 036|
+15
+normal! 03|
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf

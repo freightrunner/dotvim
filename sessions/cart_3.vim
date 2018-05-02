@@ -8,12 +8,12 @@ inoremap <silent> <Plug>NERDCommenterInsert  <BS>:call NERDComment('i', "inse
 vmap  :w !pbcopy
 nnoremap <silent>  :CtrlP
 vmap  :!pbcopy
-nmap <silent> ,vv <Plug>EgMapGrepCurrentWord_v
-nmap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
-nmap <silent> ,va <Plug>EgMapGrepCurrentWord_a
-nmap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
-nmap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
 nmap <silent> ,vR <Plug>EgMapReplaceCurrentWord_R
+nmap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
+nmap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
+nmap <silent> ,va <Plug>EgMapGrepCurrentWord_a
+nmap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
+nmap <silent> ,vv <Plug>EgMapGrepCurrentWord_v
 nmap ,hp <Plug>GitGutterPreviewHunk
 nmap ,hr <Plug>GitGutterUndoHunk:echomsg ',hr is deprecated. Use ,hu'
 nmap ,hu <Plug>GitGutterUndoHunk
@@ -180,24 +180,26 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +25 spec/factories/carts.rb
-badd +12 spec/factories/cart_items.rb
-badd +17 app/models/adjustment.rb
-badd +9 app/serializers/cart_serializer.rb
-badd +9 app/serializers/cart_item_serializer.rb
-badd +22 app/services/sailthru/communicator.rb
-badd +22 app/models/cart_item.rb
-badd +12 app/models/cart.rb
+badd +8 spec/factories/cart_items.rb
+badd +12 app/serializers/cart_serializer.rb
+badd +5 app/serializers/cart_item_serializer.rb
+badd +21 app/models/cart_item.rb
+badd +41 app/models/cart.rb
 badd +56 app/models/leg.rb
 badd +1 app/models/ship_point.rb
-badd +11 app/models/insurance_rate.rb
 badd +14 spec/factories/insurance_rates.rb
-badd +47 app/models/brand.rb
 badd +1 app/models/traveler.rb
+badd +92 config/routes.rb
+badd +7 app/serializers/traveler_serializer.rb
+badd +12 app/serializers/brand_serializer.rb
+badd +1 spec/factories/carts.rb
+badd +137 app/models/user.rb
+badd +128 app/models/club.rb
+badd +24 app/models/address.rb
 argglobal
 silent! argdel *
 $argadd spec/factories/carts.rb
-edit app/models/cart_item.rb
+edit app/serializers/cart_serializer.rb
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -332,12 +334,12 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 22 - ((21 * winheight(0) + 29) / 59)
+let s:l = 12 - ((11 * winheight(0) + 29) / 59)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-22
-normal! 0
+12
+normal! 03|
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf
