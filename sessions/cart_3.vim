@@ -8,12 +8,12 @@ inoremap <silent> <Plug>NERDCommenterInsert  <BS>:call NERDComment('i', "inse
 vmap  :w !pbcopy
 nnoremap <silent>  :CtrlP
 vmap  :!pbcopy
-nmap <silent> ,vR <Plug>EgMapReplaceCurrentWord_R
-nmap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
-nmap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
-nmap <silent> ,va <Plug>EgMapGrepCurrentWord_a
-nmap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
 nmap <silent> ,vv <Plug>EgMapGrepCurrentWord_v
+nmap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
+nmap <silent> ,va <Plug>EgMapGrepCurrentWord_a
+nmap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
+nmap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
+nmap <silent> ,vR <Plug>EgMapReplaceCurrentWord_R
 nmap ,hp <Plug>GitGutterPreviewHunk
 nmap ,hr <Plug>GitGutterUndoHunk:echomsg ',hr is deprecated. Use ,hu'
 nmap ,hu <Plug>GitGutterUndoHunk
@@ -180,26 +180,19 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +8 spec/factories/cart_items.rb
-badd +12 app/serializers/cart_serializer.rb
-badd +5 app/serializers/cart_item_serializer.rb
-badd +21 app/models/cart_item.rb
-badd +41 app/models/cart.rb
-badd +56 app/models/leg.rb
-badd +1 app/models/ship_point.rb
-badd +14 spec/factories/insurance_rates.rb
-badd +1 app/models/traveler.rb
-badd +92 config/routes.rb
-badd +7 app/serializers/traveler_serializer.rb
-badd +12 app/serializers/brand_serializer.rb
-badd +1 spec/factories/carts.rb
-badd +137 app/models/user.rb
-badd +128 app/models/club.rb
-badd +24 app/models/address.rb
+badd +7 spec/factories/cart_items.rb
+badd +9 app/serializers/cart_serializer.rb
+badd +12 app/serializers/cart_item_serializer.rb
+badd +27 app/models/cart_item.rb
+badd +7 app/models/cart.rb
+badd +24 app/models/leg.rb
+badd +32 app/helpers/api/v5/api_base_helper.rb
+badd +14 app/models/ship_route.rb
+badd +111 app/models/shipment.rb
 argglobal
 silent! argdel *
 $argadd spec/factories/carts.rb
-edit app/serializers/cart_serializer.rb
+edit app/models/shipment.rb
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -334,12 +327,12 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 12 - ((11 * winheight(0) + 29) / 59)
+let s:l = 110 - ((28 * winheight(0) + 29) / 59)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-12
-normal! 03|
+110
+normal! 049|
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf

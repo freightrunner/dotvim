@@ -185,12 +185,13 @@ badd +11 app/services/carts/create.rb
 badd +47 app/services/carts/item_create.rb
 badd +18 app/services/carts/item_update.rb
 badd +15 app/services/carts/cart_update.rb
-badd +43 app/controllers/api/v5/cart_items_controller.rb
+badd +78 app/controllers/api/v5/cart_items_controller.rb
 badd +36 app/services/adjustments/create.rb
 badd +48 app/controllers/api/v5/travelers_controller.rb
 badd +29 app/services/travelers/create.rb
-badd +52 app/controllers/api/v5/users_controller.rb
+badd +33 app/controllers/api/v5/users_controller.rb
 badd +31 app/controllers/api/v5/carts_controller.rb
+badd +49 app/helpers/api/v5/api_base_helper.rb
 argglobal
 silent! argdel *
 $argadd app/models/cart.rb
@@ -329,12 +330,12 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 15 - ((14 * winheight(0) + 24) / 49)
+let s:l = 30 - ((29 * winheight(0) + 24) / 49)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-15
-normal! 044|
+30
+normal! 07|
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf
