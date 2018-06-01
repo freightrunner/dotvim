@@ -8,27 +8,27 @@ inoremap <silent> <Plug>NERDCommenterInsert  <BS>:call NERDComment('i', "inse
 vmap  :w !pbcopy
 nnoremap <silent>  :CtrlP
 vmap  :!pbcopy
-nmap <silent> ,vv <Plug>EgMapGrepCurrentWord_v
-nmap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
-nmap <silent> ,va <Plug>EgMapGrepCurrentWord_a
-nmap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
-nmap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
-nmap <silent> ,vR <Plug>EgMapReplaceCurrentWord_R
 nmap ,hp <Plug>GitGutterPreviewHunk
 nmap ,hr <Plug>GitGutterUndoHunk:echomsg ',hr is deprecated. Use ,hu'
 nmap ,hu <Plug>GitGutterUndoHunk
 nmap ,hs <Plug>GitGutterStageHunk
 vmap <silent> ,vR <Plug>EgMapReplaceSelection_R
+nmap <silent> ,vR <Plug>EgMapReplaceCurrentWord_R
 omap <silent> ,vR <Plug>EgMapReplaceCurrentWord_R
 vmap <silent> ,vr <Plug>EgMapReplaceSelection_r
+nmap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
 omap <silent> ,vr <Plug>EgMapReplaceCurrentWord_r
 vmap <silent> ,vA <Plug>EgMapGrepSelection_A
+nmap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
 omap <silent> ,vA <Plug>EgMapGrepCurrentWord_A
 vmap <silent> ,va <Plug>EgMapGrepSelection_a
+nmap <silent> ,va <Plug>EgMapGrepCurrentWord_a
 omap <silent> ,va <Plug>EgMapGrepCurrentWord_a
 vmap <silent> ,vV <Plug>EgMapGrepSelection_V
+nmap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
 omap <silent> ,vV <Plug>EgMapGrepCurrentWord_V
 vmap <silent> ,vv <Plug>EgMapGrepSelection_v
+nmap <silent> ,vv <Plug>EgMapGrepCurrentWord_v
 omap <silent> ,vv <Plug>EgMapGrepCurrentWord_v
 map <silent> ,vo <Plug>EgMapGrepOptions
 nmap ,ca <Plug>NERDCommenterAltDelims
@@ -81,7 +81,7 @@ nmap yss <Plug>Yssurround
 nmap yS <Plug>YSurround
 nmap ys <Plug>Ysurround
 vnoremap <silent> <Plug>NetrwBrowseXVis :call netrw#BrowseXVis()
-nnoremap <silent> <Plug>NetrwBrowseX :call netrw#BrowseX(expand((exists("g:netrw_gx")? g:netrw_gx : '<cfile>')),netrw#CheckIfRemote())
+nnoremap <silent> <Plug>NetrwBrowseX :call netrw#BrowseX(netrw#GX(),netrw#CheckIfRemote(netrw#GX()))
 nnoremap <silent> <Plug>SurroundRepeat .
 nnoremap <silent> <Plug>GitGutterPreviewHunk :GitGutterPreviewHunk
 nnoremap <silent> <Plug>GitGutterUndoHunk :GitGutterUndoHunk
@@ -144,13 +144,12 @@ set hidden
 set history=1000
 set hlsearch
 set ignorecase
-set imsearch=0
 set incsearch
 set laststatus=2
 set listchars=tab:▸·,trail:·
 set modelines=0
 set mouse=a
-set runtimepath=~/.vim,~/.vim/bundle/ack.vim,~/.vim/bundle/ag,~/.vim/bundle/bundle,~/.vim/bundle/csv,~/.vim/bundle/ctrlp.vim,~/.vim/bundle/haskell-vim,~/.vim/bundle/matchit,~/.vim/bundle/nerdcommenter,~/.vim/bundle/nerdtree,~/.vim/bundle/purescript-vim,~/.vim/bundle/railscasts-theme,~/.vim/bundle/supertab,~/.vim/bundle/syntastic,~/.vim/bundle/vim-airline,~/.vim/bundle/vim-airline-themes,~/.vim/bundle/vim-autoclose,~/.vim/bundle/vim-bufferline,~/.vim/bundle/vim-coffee-script,~/.vim/bundle/vim-easygrep,~/.vim/bundle/vim-elixir,~/.vim/bundle/vim-endwise,~/.vim/bundle/vim-fugitive,~/.vim/bundle/vim-gitgutter,~/.vim/bundle/vim-go,~/.vim/bundle/vim-json,~/.vim/bundle/vim-mustached-handlebars,~/.vim/bundle/vim-rails,~/.vim/bundle/vim-scala,~/.vim/bundle/vim-slim,~/.vim/bundle/vim-surround,~/.vim/bundle/vim-terraform,/usr/share/vim/vimfiles,/usr/share/vim/vim80,/usr/share/vim/vimfiles/after,~/.vim/bundle/haskell-vim/after,~/.vim/bundle/vim-coffee-script/after,~/.vim/bundle/vim-scala/after,~/.vim/bundle/vim-terraform/after,~/.vim/af
+set runtimepath=~/.vim,~/.vim/bundle/ack.vim,~/.vim/bundle/ag,~/.vim/bundle/bundle,~/.vim/bundle/csv,~/.vim/bundle/ctrlp.vim,~/.vim/bundle/haskell-vim,~/.vim/bundle/matchit,~/.vim/bundle/nerdcommenter,~/.vim/bundle/nerdtree,~/.vim/bundle/purescript-vim,~/.vim/bundle/railscasts-theme,~/.vim/bundle/supertab,~/.vim/bundle/syntastic,~/.vim/bundle/vim-airline,~/.vim/bundle/vim-airline-themes,~/.vim/bundle/vim-autoclose,~/.vim/bundle/vim-bufferline,~/.vim/bundle/vim-coffee-script,~/.vim/bundle/vim-easygrep,~/.vim/bundle/vim-elixir,~/.vim/bundle/vim-endwise,~/.vim/bundle/vim-fugitive,~/.vim/bundle/vim-game-code-break,~/.vim/bundle/vim-gitgutter,~/.vim/bundle/vim-go,~/.vim/bundle/vim-json,~/.vim/bundle/vim-mustached-handlebars,~/.vim/bundle/vim-rails,~/.vim/bundle/vim-scala,~/.vim/bundle/vim-slim,~/.vim/bundle/vim-surround,~/.vim/bundle/vim-terraform,/usr/share/vim/vimfiles,/usr/share/vim/vim80,/usr/share/vim/vimfiles/after,~/.vim/bundle/haskell-vim/after,~/.vim/bundle/vim-coffee-script/after,~/.vim/bundle/vim-scala/after,~/.vim/bu
 set shell=zsh
 set shiftwidth=2
 set showcmd
@@ -180,17 +179,23 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +24 app/models/cart_item.rb
-badd +24 app/models/cart.rb
-badd +24 app/models/leg.rb
-badd +32 app/helpers/api/v5/api_base_helper.rb
-badd +6 spec/factories/ship_routes.rb
-badd +10 app/models/adjustment.rb
-badd +138 app/models/user.rb
+badd +17 lib/tasks/update_users_auth_token.rake
+badd +13 spec/models/user_spec.rb
+badd +1 spec/models/cart_spec.rb
+badd +1 spec/factories/users.rb
+badd +23 app/models/cart.rb
+badd +26 app/models/cart_item.rb
+badd +536 app/controllers/v2/payments_controller.rb
+badd +22 spec/factories/orders.rb
+badd +25 spec/factories/shipments.rb
+badd +32 app/controllers/v2/orders_controller.rb
+badd +524 app/models/shipment.rb
+badd +11 app/services/segment/shipment_event_updater.rb
+badd +460 app/models/concerns/shipping_processor.rb
 argglobal
 silent! argdel *
-$argadd spec/factories/carts.rb
-edit app/models/adjustment.rb
+$argadd lib/tasks/update_users_auth_token.rake
+edit app/models/shipment.rb
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -267,7 +272,7 @@ setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
 setlocal formatprg=
 setlocal grepprg=
 setlocal iminsert=0
-setlocal imsearch=0
+setlocal imsearch=-1
 setlocal include=^\\s*\\<\\(load\\>\\|require\\>\\|autoload\\s*:\\=[\"']\\=\\h\\w*[\"']\\=,\\)
 setlocal includeexpr=RailsIncludeexpr()
 setlocal indentexpr=GetRubyIndent(v:lnum)
@@ -325,11 +330,11 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 13 - ((12 * winheight(0) + 29) / 59)
+let s:l = 524 - ((31 * winheight(0) + 28) / 57)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-13
+524
 normal! 0
 tabnext 1
 if exists('s:wipebuf')
