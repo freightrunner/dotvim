@@ -94,3 +94,6 @@
 [submodule "bundle/vim-game-code-break"]
 	path = bundle/vim-game-code-break
 	url = https://github.com/johngrib/vim-game-code-break
+[submodule "bundle/vim-javascript"]
+	path = bundle/vim-javascript
+	url = https://github.com/pangloss/vim-javascript.git
